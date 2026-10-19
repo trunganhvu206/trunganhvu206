@@ -158,3 +158,29 @@ def braille(path, x, y, pitch, dot, color, opacity=1.0):
            f'stroke-linecap="round" opacity="{opacity}"/>')
     return svg, cols * 2 * pitch, len(rows) * 4 * pitch
 
+
+
+def dot_text(text, x, y, pitch, dot, color, size=21):
+    """Set `text` in VT323 and draw every lit pixel as a dot.
+
+    VT323 is a pixel font, so rasterising it without anti-aliasing gives a
+    clean on/off grid — an LED-sign lettering that matches the braille art.
+    Needs Pillow at build time only; the SVG it produces is plain paths.
+    Returns (svg, width, height, baseline_row).
+    """
+    from PIL import Image, ImageDraw, ImageFont
+
+    font = ImageFont.truetype(FONT_PATH, size)
+    left, top, right, bottom = font.getbbox(text)
+    img = Image.new("1", (right - left, bottom - top), 0)
+    draw = ImageDraw.Draw(img)
+    draw.fontmode = "1"                      # no anti-aliasing: pixels are on or off
+    draw.text((-left, -top), text, font=font, fill=1)
+
+    px, (cols, rows) = img.load(), img.size
+    d = ["M%.1f %.1fh0" % (x + c * pitch, y + r * pitch)
+         for r in range(rows) for c in range(cols) if px[c, r]]
+    baseline = font.getbbox("T")[3] - top     # bottom of a capital, in grid rows
+    svg = (f'<path d="{"".join(d)}" stroke="{color}" stroke-width="{dot}" '
+           f'stroke-linecap="round"/>')
+    return svg, cols * pitch, rows * pitch, baseline

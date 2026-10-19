@@ -13,7 +13,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import theme as T
-from theme import C, braille, card, chip, document, esc, stars, w, window
+from theme import C, braille, card, chip, document, dot_text, esc, stars, w, window
 
 ROOT = T.ROOT
 OUT = os.path.join(ROOT, "assets")
@@ -89,7 +89,7 @@ def write(name, svg):
 
 # -------------------------------------------------------------- terminal
 def build_terminal():
-    H, bar = 294, 42
+    bar = 42
     p = PROFILE
     rows = [
         ("Role",     p["role"]),
@@ -99,31 +99,30 @@ def build_terminal():
         ("Email",    p["email"]),
     ]
     head, alias = "Trung Anh Vu", "( Rosie Vu )"
+    tx, pitch = 40, 5
+
+    # the name, drawn as dot-matrix lettering
+    name, name_w, name_h, base = dot_text(head, tx, bar + 32, pitch, 3.8, C["accent"])
+    rule_y = bar + 32 + name_h + 16
+    first = rule_y + 36
+    H = first + (len(rows) - 1) * 30 + 32
 
     body = [f'<defs>{stars()}</defs>', window(W, H, "trung_anh_vu — neofetch", bar)]
     body.append(f'<rect x="1.2" y="{bar + 1}" width="{W - 2.4}" height="{H - bar - 2}" fill="url(#st)"/>')
+    body.append(name)
+    body.append(f'<text x="{tx + name_w + 22}" y="{bar + 32 + base * pitch}" class="s" '
+                f'font-size="24">{esc(alias)}</text>')
+    body.append(f'<path d="M{tx} {rule_y} H{W - tx}" stroke="{C["frame"]}" stroke-width="1.2"/>')
 
-    # monogram block, where neofetch puts the distro logo
-    bx, by = 40, bar + 34
-    body.append(card(bx, by, 150, 150, C["bg"]))
-    body.append(f'<rect x="{bx + 18}" y="{by + 18}" width="114" height="114" rx="3" fill="none" stroke="{C["frame"]}"/>')
-    body.append(f'<text x="{bx + 75}" y="{by + 97}" class="a" font-size="62" text-anchor="middle" letter-spacing="2">TA</text>')
-
-    # key/value block
-    tx, ty = 224, bar + 56
-    body.append(f'<text x="{tx}" y="{ty}" class="a" font-size="32">{esc(head)} '
-                f'<tspan class="s" font-size="22">{esc(alias)}</tspan></text>')
-    body.append(f'<path d="M{tx} {ty + 10} H{tx + w(head, 32)}" stroke="{C["accent"]}" stroke-width="1.2"/>')
-
-    y = ty + 42
+    y = first
     for key, value in rows:
         body.append(f'<text x="{tx}" y="{y}" class="t" font-size="22">{key.ljust(9)}: '
                     f'<tspan class="s">{esc(value)}</tspan></text>')
         y += 30
 
-    chars = "".join(v for _, v in rows) + "".join(k for k, _ in rows) + head + alias + "TA" + "trung_anh_vu — neofetch:"
+    chars = "".join(v for _, v in rows) + "".join(k for k, _ in rows) + alias + "trung_anh_vu — neofetch:"
     return document(W, H, "\n".join(body), chars,
-                    f'Terminal card: {p["name"]}, {p["role"]}, {p["status"]}',
+                    f'{head} {alias} — {p["role"]}, {p["status"]}',
                     f'{p["role"]}. Focus: {p["focus"]}. Learning: {p["learning"]}. Contact: {p["email"]}.')
 
 
