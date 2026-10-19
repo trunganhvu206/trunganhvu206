@@ -22,13 +22,6 @@
   <b>live</b>&nbsp;&nbsp;<a href="https://trunganhvu206.github.io/trunganhvu206/">trunganhvu206.github.io/trunganhvu206</a>
 </p>
 
-<p>
-  <a href="mailto:trunganhvu2611@gmail.com"><img src="assets/link-email.svg" alt="Email" height="40"></a>
-  <a href="https://www.linkedin.com/in/trunganhvu206"><img src="assets/link-linkedin.svg" alt="LinkedIn" height="40"></a>
-  <a href="https://github.com/trunganhvu206"><img src="assets/link-github.svg" alt="GitHub" height="40"></a>
-  <a href="https://trunganhvu206.github.io/trunganhvu206/"><img src="assets/link-live.svg" alt="Live interactive profile" height="40"></a>
-  <a href="./PROJECTS.md"><img src="assets/link-projects.svg" alt="Project log" height="40"></a>
-</p>
 
 <br>
 

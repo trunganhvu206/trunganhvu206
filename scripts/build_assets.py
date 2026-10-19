@@ -63,14 +63,6 @@ PROFILE = {
         ]),
     ],
 
-    "links": [
-        ("github",      "GitHub",      True),
-        ("linkedin",    "LinkedIn",    True),
-        ("email",       "Email",       True),
-        ("projects",    "Project Log", True),
-        ("live",        "Live Profile", True),
-    ],
-
     "sections": [
         ("contact",  "00", "contact"),
         ("about",    "01", "about me"),
@@ -199,18 +191,6 @@ def build_card(title, badge, lines):
                     f'{title} — {badge}', " ".join(lines))
 
 
-# ------------------------------------------------------------------ link
-def build_link(label, live):
-    H, size = 40, 21
-    width = int(w(label, size) + 44)
-    fill = C["accent"] if live else C["bg"]
-    ink = "p" if live else "s"
-    body = [f'<rect x="0.6" y="0.6" width="{width - 1.2}" height="{H - 1.2}" rx="3" fill="{fill}" '
-            f'stroke="{C["accent"] if live else C["frame"]}" stroke-width="1.2"/>',
-            f'<text x="{width / 2}" y="{H / 2 + 8}" class="{ink}" font-size="{size}" text-anchor="middle">{esc(label)}</text>']
-    return document(width, H, "\n".join(body), label, label)
-
-
 # ---------------------------------------------------------------- footer
 def build_footer():
     H = 74
@@ -231,8 +211,6 @@ def main():
     write("stack.svg", build_stack())
     for (title, badge, lines), key in zip(PROFILE["cards"], ["log", "next"]):
         write(f"card-{key}.svg", build_card(title, badge, lines))
-    for key, label, live in PROFILE["links"]:
-        write(f"link-{key}.svg", build_link(label if live else f"{label} — soon", live))
     write("footer.svg", build_footer())
     print("done.")
 
