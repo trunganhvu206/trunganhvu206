@@ -1,33 +1,43 @@
 <div align="center">
 
-<img src="./assets/card.svg" width="780" alt="Trung Anh Vu — Data Science Student. Open to internships. Skills: Python, pandas, NumPy, scikit-learn, PyTorch, SQL, R, Jupyter, matplotlib, Power BI, Git.">
-
-<br>
+```
+┌─ trung_anh_vu.exe ─────────────────────────────────── ○ ○ ● ─┐
+│                                                              │
+│ ┌──────────┐   Trung Anh Vu ( Rosie Vu )                     │
+│ │          │   Role   : Data Science Student                 │
+│ │    TA    │   User   : @trunganhvu206                       │
+│ │          │   Status : ● Open to Internships                │
+│ └──────────┘   Update : Oct 2026                             │
+│                                                              │
+│ ──────────────────────────────────────────────────────────── │
+│                                                              │
+│ 1. GitHub     github.com/trunganhvu206                       │
+│ 2. LinkedIn   coming soon                                    │
+│ 3. Email      trunganhvu2611@gmail.com                       │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
 
 <a href="https://trunganhvu206.github.io/trunganhvu206/"><img src="https://img.shields.io/badge/▶_Open_the_live_profile-8C6E4E?style=for-the-badge&logoColor=FFFBF5" alt="Open the live interactive profile"></a>
 
-<sub>↑ the card above, but clickable — live clock, switchable panels, copy-my-email</sub>
+<sub>the window above, but clickable — live clock, switchable panels, copy-my-email</sub>
 
 <br><br>
 
 <a href="mailto:trunganhvu2611@gmail.com"><img src="https://img.shields.io/badge/✉_Contact_Me-EFE6D8?style=for-the-badge&logoColor=8C6E4E" alt="Contact me"></a>
 <a href="./PROJECTS.md"><img src="https://img.shields.io/badge/📁_Project_Log-EFE6D8?style=for-the-badge&logoColor=8C6E4E" alt="Project log"></a>
-
-<br><br>
-
-<a href="https://github.com/trunganhvu206"><img src="https://img.shields.io/badge/GitHub-EFE6D8?style=for-the-badge&logo=github&logoColor=8C6E4E" alt="GitHub"></a>
-<a href="https://www.linkedin.com/in/YOUR-LINKEDIN"><img src="https://img.shields.io/badge/LinkedIn-EFE6D8?style=for-the-badge&logo=linkedin&logoColor=8C6E4E" alt="LinkedIn"></a>
-<a href="mailto:trunganhvu2611@gmail.com"><img src="https://img.shields.io/badge/Email-EFE6D8?style=for-the-badge&logo=gmail&logoColor=8C6E4E" alt="Email"></a>
-<a href="https://www.kaggle.com/YOUR-KAGGLE"><img src="https://img.shields.io/badge/Kaggle-EFE6D8?style=for-the-badge&logo=kaggle&logoColor=8C6E4E" alt="Kaggle"></a>
-<a href="./assets/resume.pdf"><img src="https://img.shields.io/badge/Resume-8C6E4E?style=for-the-badge&logo=readdotcv&logoColor=FFFBF5" alt="Resume"></a>
+<a href="https://github.com/trunganhvu206?tab=repositories"><img src="https://img.shields.io/badge/📓_Notebooks-EFE6D8?style=for-the-badge&logoColor=8C6E4E" alt="Notebooks"></a>
 
 </div>
 
 <br>
 
-## About
+## ▸ About Me
 
-Data science student learning to work with data end to end — cleaning and wrangling, exploratory analysis, modelling, and then turning the results into something a non-technical reader can act on. Currently building my first portfolio projects, with a focus on machine learning, applied statistics, and reproducible analysis.
+> Data science student learning to work with data end to end — cleaning and wrangling,
+> exploratory analysis, modelling, then turning the results into something a
+> non-technical reader can act on. Currently building my first portfolio projects
+> and keeping every notebook reproducible.
 
 <details open>
 <summary><b>📊 How I work</b></summary>
@@ -66,9 +76,17 @@ Data science student learning to work with data end to end — cleaning and wran
 
 <br>
 
-## Toolkit
+## ▸ Core Skills
+
+| # | Skills | Area |
+|:--|:-------|-----:|
+| `1` | python, pandas, numpy, r | lang |
+| `2` | scikit-learn, pytorch, statistics | ml |
+| `3` | sql, postgresql, cleaning, etl | data |
+| `4` | matplotlib, seaborn, power bi | viz |
 
 <div align="center">
+<br>
 
 <img src="https://img.shields.io/badge/Python-EFE6D8?style=for-the-badge&logo=python&logoColor=8C6E4E" alt="Python">
 <img src="https://img.shields.io/badge/pandas-EFE6D8?style=for-the-badge&logo=pandas&logoColor=8C6E4E" alt="pandas">
@@ -87,23 +105,17 @@ Data science student learning to work with data end to end — cleaning and wran
 
 <br>
 
-## Projects
+## ▸ Projects
 
-I'm early in my studies and building my portfolio now. Rather than pad this section, I keep a **[project log →](./PROJECTS.md)** — what I'm working toward, what I'm learning, and the write-ups as they land.
+I'm early in my studies and building my portfolio now. Rather than pad this section, I keep a
+**[project log →](./PROJECTS.md)** — what I'm working toward, what I'm learning, and the write-ups as they land.
 
-When a project appears there, it comes with the question it answers, the data source, the results against an honest baseline, and steps to reproduce the run.
-
-<br>
-
-## Coursework & Interests
-
-- **Core** — statistics & probability, linear algebra, machine learning, data structures, databases
-- **Currently learning** — deep learning with PyTorch, experiment tracking, causal inference
-- **Curious about** — model interpretability, data visualisation that respects the reader, ML in production
+When a project appears there, it comes with the question it answers, the data source, the results
+against an honest baseline, and steps to reproduce the run.
 
 <br>
 
-## GitHub Activity
+## ▸ GitHub Activity
 
 <div align="center">
 
@@ -114,16 +126,21 @@ When a project appears there, it comes with the question it answers, the data so
 
 <br>
 
-## Contact
+## ▸ Contact
 
-Open to internships and collaborations, and happy to walk through any of the work above.
+Open to internships and collaborations, and happy to talk through my coursework and where I'm headed.
 
-- **Email** — [trunganhvu2611@gmail.com](mailto:trunganhvu2611@gmail.com)
-- **LinkedIn** — [linkedin.com/in/YOUR-LINKEDIN](https://www.linkedin.com/in/YOUR-LINKEDIN)
-- **Projects** — [full write-ups](./PROJECTS.md)
-- **Resume** — available on request
+| | |
+|:--|:--|
+| **Email** | [trunganhvu2611@gmail.com](mailto:trunganhvu2611@gmail.com) |
+| **LinkedIn** | coming soon |
+| **Live profile** | [trunganhvu206.github.io/trunganhvu206](https://trunganhvu206.github.io/trunganhvu206/) |
+| **Projects** | [project log](./PROJECTS.md) |
+| **Resume** | available on request |
 
 <div align="center">
 <br>
+
 <sub><code>#F5EFE6</code> · <code>#FFFBF5</code> · <code>#8C6E4E</code> · <code>#C8B79E</code> · <code>#3B2F24</code> · <code>#6B5A48</code></sub>
+
 </div>
