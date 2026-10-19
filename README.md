@@ -12,17 +12,22 @@
 
 <img src="assets/terminal.svg" alt="Terminal running neofetch: Trung Anh Vu (Rosie Vu), data science student, open to internships — Python, pandas, scikit-learn, SQL" width="100%">
 
+<br><br>
+
+<img src="assets/section-contact.svg" alt="00 — contact" width="100%">
+<img src="assets/contact.svg" alt="Contact — email: trunganhvu2611@gmail.com; LinkedIn: linkedin.com/in/trunganhvu206; GitHub: github.com/trunganhvu206; live profile: trunganhvu206.github.io/trunganhvu206" width="100%">
+
 <p>
+  <a href="mailto:trunganhvu2611@gmail.com"><img src="assets/link-email.svg" alt="Email" height="40"></a>
+  <a href="https://www.linkedin.com/in/trunganhvu206"><img src="assets/link-linkedin.svg" alt="LinkedIn" height="40"></a>
   <a href="https://github.com/trunganhvu206"><img src="assets/link-github.svg" alt="GitHub" height="40"></a>
   <a href="https://trunganhvu206.github.io/trunganhvu206/"><img src="assets/link-live.svg" alt="Live interactive profile" height="40"></a>
-  <a href="mailto:trunganhvu2611@gmail.com"><img src="assets/link-email.svg" alt="Email" height="40"></a>
   <a href="./PROJECTS.md"><img src="assets/link-projects.svg" alt="Project log" height="40"></a>
-  <a href="https://www.linkedin.com/in/trunganhvu206"><img src="assets/link-linkedin.svg" alt="LinkedIn" height="40"></a>
 </p>
 
 <br>
 
-<img src="assets/section-about.svg" alt="01 — about" width="100%">
+<img src="assets/section-about.svg" alt="01 — about me" width="100%">
 <img src="assets/about.svg" alt="Data science student learning to work with data end to end: cleaning and wrangling, exploratory analysis, modelling, then turning results into something a non-technical reader can act on. Statistics-first, every notebook runs top to bottom." width="100%">
 
 <br><br>
