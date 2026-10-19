@@ -1,6 +1,8 @@
 """Render every SVG on the profile.
 
-All copy lives in PROFILE below — edit it there, then run:
+Layout follows an avionics-display convention: a banner headline flanked by
+asterisks, a rule, then rows of LABEL + value aligned in columns. All copy
+lives in PROFILE below — edit it there, then run:
 
     python scripts/build_assets.py
 
@@ -13,216 +15,163 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import theme as T
-from theme import C, card, chip, document, esc, stars, w, window
+from theme import C, banner, card, cols, document, esc, line, rule, stars, w, window
 
 ROOT = T.ROOT
 OUT = os.path.join(ROOT, "assets")
-W = 900  # full-bleed asset width; GitHub scales it down to the column
+
+W = 900      # full-bleed asset width; GitHub scales it to the column
+SIZE = 26    # body type
+PAD = 28
+LEAD = 34    # line height
+NCOL = cols(W, SIZE, PAD)
 
 
 # --------------------------------------------------------------- content
 PROFILE = {
     "handle": "trunganhvu206",
-    "name": "Trung Anh Vu ( Rosie Vu )",
-    "role": "Data Science Student",
-    "status": "Open to Internships",
     "email": "trunganhvu2611@gmail.com",
-    "focus": "machine learning · statistics · reproducible analysis",
-    "learning": "pandas · sql · scikit-learn",
+
+    "id": [
+        ("NAME",     "Trung Anh Vu ( Rosie Vu )"),
+        ("ROLE",     "Data Science Student"),
+        ("STATUS",   "Open to Internships"),
+        ("FOCUS",    "machine learning / statistics"),
+        ("LEARNING", "pandas / sql / scikit-learn"),
+        ("EMAIL",    "trunganhvu2611@gmail.com"),
+    ],
 
     "about": [
-        "Data science student learning to work with data end to end — cleaning and",
-        "wrangling, exploratory analysis, modelling, then turning the results into",
-        "something a non-technical reader can act on.",
+        "Data science student learning to work with data end to end — cleaning",
+        "and wrangling, exploratory analysis, modelling, then turning the",
+        "results into something a non-technical reader can act on.",
         "",
-        "Statistics-first: I would rather check an assumption and report uncertainty",
-        "than hand over a single accuracy number. Every notebook runs top to bottom.",
+        "Statistics-first: I would rather check an assumption and report",
+        "uncertainty than hand over a single accuracy number. Every notebook",
+        "runs top to bottom.",
+    ],
+
+    "work": [
+        ("PROJECT LOG",         "write-ups land here as I finish them"),
+        ("END-TO-END ANALYSIS", "public data, raw csv to a conclusion"),
+        ("SUPERVISED MODEL",    "measured against an honest baseline"),
+        ("STATISTICS WRITE-UP", "assumptions, effect size, decision"),
+        ("DASHBOARD",           "the same findings, for a non-technical reader"),
     ],
 
     "stack": [
-        ("languages", ["python", "r", "sql"]),
-        ("data",      ["pandas", "numpy", "postgresql", "excel"]),
-        ("ml",        ["scikit-learn", "pytorch", "statsmodels"]),
-        ("viz",       ["matplotlib", "seaborn", "plotly", "power bi"]),
-        ("tooling",   ["git", "jupyter", "vs code"]),
-    ],
-
-    "cards": [
-        ("project log", "in progress", [
-            "Write-ups land here as I finish them —",
-            "question, data, method, results against",
-            "an honest baseline, and how to rerun it.",
-        ]),
-        ("working toward", "planned", [
-            "An end-to-end analysis on public data,",
-            "a supervised model with a real baseline,",
-            "a statistics write-up, a small dashboard.",
-        ]),
+        ("LANGUAGES", "python / r / sql"),
+        ("DATA",      "pandas / numpy / postgresql / excel"),
+        ("ML",        "scikit-learn / pytorch / statsmodels"),
+        ("VIZ",       "matplotlib / seaborn / plotly / power bi"),
+        ("TOOLING",   "git / jupyter / vs code"),
     ],
 
     "links": [
-        ("github",      "GitHub",      True),
-        ("linkedin",    "LinkedIn",    False),
-        ("email",       "Email",       True),
-        ("projects",    "Project Log", True),
-        ("notebooks",   "Notebooks",   True),
-        ("live",        "Live Profile", True),
-    ],
-
-    "sections": [
-        ("about",    "01", "about"),
-        ("projects", "02", "work in progress"),
-        ("stack",    "03", "toolkit"),
-        ("stats",    "04", "activity"),
+        ("github",    "GitHub",       True),
+        ("live",      "Live Profile", True),
+        ("email",     "Email",        True),
+        ("projects",  "Project Log",  True),
+        ("notebooks", "Notebooks",    True),
+        ("linkedin",  "LinkedIn",     False),
     ],
 }
 
 
 def write(name, svg):
-    path = os.path.join(OUT, name)
-    with open(path, "w", encoding="utf-8") as fh:
+    with open(os.path.join(OUT, name), "w", encoding="utf-8") as fh:
         fh.write(svg)
-    print("  %-26s %5.1f KB" % (name, len(svg.encode()) / 1024))
+    print("  %-22s %5.1f KB" % (name, len(svg.encode()) / 1024))
+
+
+def rows(pairs, gap=2):
+    """LABEL padded to one column, value in the next."""
+    width = max(len(k) for k, _ in pairs) + gap
+    return [k.ljust(width) + v for k, v in pairs]
+
+
+def block(num, label, body_lines):
+    """A section: banner headline, rule, then the body lines."""
+    lines = [banner(f"{num}  {label}", NCOL), rule(NCOL)] + body_lines
+    height = PAD * 2 + len(lines) * LEAD - (LEAD - SIZE)
+
+    body = [f'<rect width="{W}" height="{height}" fill="{C["backdrop"]}"/>',
+            f'<rect x="0.6" y="0.6" width="{W - 1.2}" height="{height - 1.2}" fill="none" '
+            f'stroke="{C["frame"]}" stroke-width="1.2"/>']
+    y = PAD + SIZE
+    for i, text in enumerate(lines):
+        cls = "a" if i == 0 else ("s" if i == 1 else "t")
+        if text:
+            body.append(line(PAD, y, text, SIZE, cls))
+        y += LEAD
+
+    return document(W, height, "\n".join(body), "".join(lines),
+                    f"{num} — {label}", " ".join(l for l in body_lines if l))
 
 
 # -------------------------------------------------------------- terminal
 def build_terminal():
-    H, bar = 324, 42
-    p = PROFILE
-    rows = [
-        ("Name",     p["name"]),
-        ("Role",     p["role"]),
-        ("Status",   p["status"]),
-        ("Focus",    p["focus"]),
-        ("Learning", p["learning"]),
-        ("Email",    p["email"]),
-    ]
-    head = f'{p["handle"]}@github'
+    bar_h = 42
+    id_rows = rows(PROFILE["id"], gap=3)
+    head = f'{PROFILE["handle"]}@github'
+    H = 334
 
-    body = [f'<defs>{stars()}</defs>', window(W, H, "trung_anh_vu — neofetch", bar)]
-    body.append(f'<rect x="1.2" y="{bar + 1}" width="{W - 2.4}" height="{H - bar - 2}" fill="url(#st)"/>')
+    body = [f'<defs>{stars()}</defs>', window(W, H, "trung_anh_vu.exe", bar_h)]
+    body.append(f'<rect x="1.2" y="{bar_h + 1}" width="{W - 2.4}" height="{H - bar_h - 2}" fill="url(#st)"/>')
 
-    # monogram block, where neofetch puts the distro logo
-    bx, by = 40, bar + 34
+    bx, by = 40, bar_h + 34
     body.append(card(bx, by, 150, 150, C["bg"]))
     body.append(f'<rect x="{bx + 18}" y="{by + 18}" width="114" height="114" rx="3" fill="none" stroke="{C["frame"]}"/>')
     body.append(f'<text x="{bx + 75}" y="{by + 97}" class="a" font-size="62" text-anchor="middle" letter-spacing="2">TA</text>')
 
-    # key/value block
-    tx, ty = 224, bar + 56
-    body.append(f'<text x="{tx}" y="{ty}" class="a" font-size="24">{esc(head)}</text>')
-    body.append(f'<path d="M{tx} {ty + 10} H{tx + w(head, 24)}" stroke="{C["accent"]}" stroke-width="1.2"/>')
-
-    y = ty + 42
-    for key, value in rows:
-        body.append(f'<text x="{tx}" y="{y}" class="t" font-size="22">{key.ljust(9)}: '
-                    f'<tspan class="s">{esc(value)}</tspan></text>')
+    tx, ty, size = 224, bar_h + 52, 24
+    body.append(line(tx, ty, head, size, "a"))
+    body.append(line(tx, ty + 26, rule(cols(W - tx - PAD, size)), size, "s"))
+    y = ty + 60
+    for text in id_rows:
+        body.append(line(tx, y, text, size))
         y += 30
 
-    chars = "".join(v for _, v in rows) + "".join(k for k, _ in rows) + head + "TA" + "trung_anh_vu — neofetch:"
+    chars = "".join(id_rows) + head + "TA" + "trung_anh_vu.exe-"
     return document(W, H, "\n".join(body), chars,
-                    f'Terminal card: {p["name"]}, {p["role"]}, {p["status"]}',
-                    f'{p["role"]}. Focus: {p["focus"]}. Learning: {p["learning"]}. Contact: {p["email"]}.')
-
-
-# --------------------------------------------------------------- section
-def build_section(num, label):
-    H = 54
-    size = 26
-    text = f'{num} — {label}'
-    body = [
-        f'<rect x="0" y="{H / 2 - 13}" width="5" height="26" fill="{C["accent"]}"/>',
-        f'<text x="20" y="{H / 2 + 9}" class="a" font-size="{size}">{esc(num)} <tspan class="t">— {esc(label)}</tspan></text>',
-        f'<path d="M{28 + w(text, size)} {H / 2} H{W}" stroke="{C["frame"]}" stroke-width="1.2" stroke-dasharray="3 4"/>',
-    ]
-    return document(W, H, "\n".join(body), text, f'Section {num}: {label}')
-
-
-# ----------------------------------------------------------------- about
-def build_about():
-    lines = PROFILE["about"]
-    H = 48 + len([l for l in lines]) * 30
-    body = [card(0.6, 0.6, W - 1.2, H - 1.2)]
-    y = 44
-    for line in lines:
-        if line:
-            body.append(f'<text x="28" y="{y}" class="t" font-size="22">{esc(line)}</text>')
-        y += 30
-    body.append(f'<text x="28" y="{y - 2}" class="a" font-size="22">$ <tspan class="bl">_</tspan></text>')
-    return document(W, H + 6, "\n".join(body), "".join(lines) + "$_",
-                    "About", " ".join(l for l in lines if l))
-
-
-# ----------------------------------------------------------------- stack
-def build_stack():
-    groups = PROFILE["stack"]
-    pad, label_w, row_h = 28, 118, 42
-    H = 34 + len(groups) * row_h
-    body = [card(0.6, 0.6, W - 1.2, H - 1.2)]
-    y = 26
-    for label, items in groups:
-        body.append(f'<text x="{pad}" y="{y + 21}" class="a" font-size="22">{esc(label)}</text>')
-        x = pad + label_w
-        for item in items:
-            svg, cw = chip(x, y, item)
-            body.append(svg)
-            x += cw + 8
-        y += row_h
-    chars = "".join(l for l, _ in groups) + "".join("".join(i) for _, i in groups)
-    return document(W, H, "\n".join(body), chars, "Toolkit",
-                    "; ".join(f'{l}: {", ".join(i)}' for l, i in groups))
-
-
-# ----------------------------------------------------------------- cards
-def build_card(title, badge, lines):
-    cw, H = 440, 186
-    body = [card(0.6, 0.6, cw - 1.2, H - 1.2)]
-    body.append(f'<rect x="0.6" y="0.6" width="{cw - 1.2}" height="38" rx="4" fill="{C["sub"]}"/>')
-    body.append(f'<path d="M0.6 38.6 H{cw - 0.6}" stroke="{C["frame"]}" stroke-width="1.2"/>')
-    body.append(f'<text x="20" y="27" class="t" font-size="23">{esc(title)}</text>')
-    bw = w(badge, 18) + 18
-    body.append(f'<rect x="{cw - bw - 16}" y="9" width="{bw}" height="22" rx="2" fill="{C["accent"]}"/>')
-    body.append(f'<text x="{cw - bw - 7}" y="25" class="p" font-size="18">{esc(badge)}</text>')
-    y = 70
-    for line in lines:
-        body.append(f'<text x="20" y="{y}" class="s" font-size="21">{esc(line)}</text>')
-        y += 28
-    return document(cw, H, "\n".join(body), title + badge + "".join(lines),
-                    f'{title} — {badge}', " ".join(lines))
+                    "Trung Anh Vu (Rosie Vu) — data science student, open to internships",
+                    "; ".join(f"{k}: {v}" for k, v in PROFILE["id"]))
 
 
 # ------------------------------------------------------------------ link
 def build_link(label, live):
     H, size = 40, 21
     width = int(w(label, size) + 44)
-    fill = C["accent"] if live else C["bg"]
-    ink = "p" if live else "s"
-    body = [f'<rect x="0.6" y="0.6" width="{width - 1.2}" height="{H - 1.2}" rx="3" fill="{fill}" '
+    body = [f'<rect x="0.6" y="0.6" width="{width - 1.2}" height="{H - 1.2}" rx="3" '
+            f'fill="{C["accent"] if live else C["bg"]}" '
             f'stroke="{C["accent"] if live else C["frame"]}" stroke-width="1.2"/>',
-            f'<text x="{width / 2}" y="{H / 2 + 8}" class="{ink}" font-size="{size}" text-anchor="middle">{esc(label)}</text>']
+            f'<text x="{width / 2}" y="{H / 2 + 8}" class="{"p" if live else "s"}" font-size="{size}" '
+            f'text-anchor="middle">{esc(label)}</text>']
     return document(width, H, "\n".join(body), label, label)
 
 
 # ---------------------------------------------------------------- footer
 def build_footer():
-    H = 74
+    H, size = 70, 24
     left, right = "$ exit", "thanks for stopping by."
-    body = [card(0.6, 0.6, W - 1.2, H - 1.2, C["bg"])]
-    body.append(f'<text x="28" y="{H / 2 + 8}" class="a" font-size="24">{esc(left)}<tspan class="bl">_</tspan></text>')
-    body.append(f'<text x="{W - 28}" y="{H / 2 + 8}" class="s" font-size="22" text-anchor="end">{esc(right)}</text>')
-    return document(W, H, "\n".join(body), left + right + "_", "exit — thanks for stopping by")
+    body = [f'<rect width="{W}" height="{H}" fill="{C["backdrop"]}"/>',
+            f'<rect x="0.6" y="0.6" width="{W - 1.2}" height="{H - 1.2}" fill="none" stroke="{C["frame"]}" stroke-width="1.2"/>',
+            line(PAD, 30, rule(cols(W, size, PAD)), size, "s"),
+            f'<text x="{PAD}" y="58" class="a" font-size="{size}">{esc(left)}<tspan class="bl">_</tspan></text>',
+            f'<text x="{W - PAD}" y="58" class="s" font-size="{size}" text-anchor="end">{esc(right)}</text>']
+    return document(W, H, "\n".join(body), left + right + "_-", "exit — thanks for stopping by")
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
     print("building assets ->", OUT)
     write("terminal.svg", build_terminal())
-    for key, num, label in PROFILE["sections"]:
-        write(f"section-{key}.svg", build_section(num, label))
-    write("about.svg", build_about())
-    write("stack.svg", build_stack())
-    for (title, badge, lines), key in zip(PROFILE["cards"], ["log", "next"]):
-        write(f"card-{key}.svg", build_card(title, badge, lines))
+
+    write("sec-about.svg", block("01", "ABOUT", PROFILE["about"]))
+    write("sec-work.svg", block("02", "WORK IN PROGRESS", rows(PROFILE["work"])))
+    write("sec-stack.svg", block("03", "TOOLKIT", rows(PROFILE["stack"])))
+    write("sec-activity.svg", block("04", "ACTIVITY", []))
+
     for key, label, live in PROFILE["links"]:
         write(f"link-{key}.svg", build_link(label if live else f"{label} — soon", live))
     write("footer.svg", build_footer())
