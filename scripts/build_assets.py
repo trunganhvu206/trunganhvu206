@@ -63,6 +63,14 @@ PROFILE = {
         ]),
     ],
 
+    # one panel per row, so each can be wrapped in its own link in the README
+    "contact": [
+        ("email",    "trunganhvu2611@gmail.com"),
+        ("linkedin", "linkedin.com/in/trunganhvu206"),
+        ("github",   "github.com/trunganhvu206"),
+        ("live",     "trunganhvu206.github.io/trunganhvu206"),
+    ],
+
     "sections": [
         ("contact",  "00", "contact"),
         ("about",    "01", "about me"),
@@ -173,6 +181,23 @@ def build_stack():
                     "; ".join(f'{l}: {", ".join(i)}' for l, i in groups))
 
 
+# --------------------------------------------------------------- contact
+def build_contact_row(label, value):
+    """A slim About-style panel: `$ label   value   ->`.
+
+    GitHub serves each SVG as an image, and an image can carry only one
+    link, so every contact gets its own panel.
+    """
+    H, size = 54, 22
+    y = H / 2 + 7
+    body = [card(0.6, 0.6, W - 1.2, H - 1.2),
+            f'<text x="28" y="{y}" class="a" font-size="{size}">$ {esc(label)}</text>',
+            f'<text x="170" y="{y}" class="t" font-size="{size}">{esc(value)}</text>',
+            f'<text x="{W - 28}" y="{y}" class="s" font-size="{size}" text-anchor="end">-&gt;</text>']
+    return document(W, H, "\n".join(body), "$ " + label + value + "->",
+                    f"{label}: {value}")
+
+
 # ----------------------------------------------------------------- cards
 def build_card(title, badge, lines):
     cw, H = 440, 186
@@ -207,6 +232,8 @@ def main():
     write("terminal.svg", build_terminal())
     for key, num, label in PROFILE["sections"]:
         write(f"section-{key}.svg", build_section(num, label))
+    for label, value in PROFILE["contact"]:
+        write(f"contact-{label}.svg", build_contact_row(label, value))
     write("about.svg", build_about())
     write("stack.svg", build_stack())
     for (title, badge, lines), key in zip(PROFILE["cards"], ["log", "next"]):

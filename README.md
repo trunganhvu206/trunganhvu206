@@ -15,15 +15,12 @@
 <br><br>
 
 <img src="assets/section-contact.svg" alt="00 — contact" width="100%">
-<p>
-  <b>email</b>&nbsp;&nbsp;<a href="mailto:trunganhvu2611@gmail.com">trunganhvu2611@gmail.com</a><br>
-  <b>linkedin</b>&nbsp;&nbsp;<a href="https://www.linkedin.com/in/trunganhvu206">linkedin.com/in/trunganhvu206</a><br>
-  <b>github</b>&nbsp;&nbsp;<a href="https://github.com/trunganhvu206">github.com/trunganhvu206</a><br>
-  <b>live</b>&nbsp;&nbsp;<a href="https://trunganhvu206.github.io/trunganhvu206/">trunganhvu206.github.io/trunganhvu206</a>
-</p>
+<a href="mailto:trunganhvu2611@gmail.com"><img src="assets/contact-email.svg" alt="email: trunganhvu2611@gmail.com" width="100%"></a>
+<a href="https://www.linkedin.com/in/trunganhvu206"><img src="assets/contact-linkedin.svg" alt="linkedin: linkedin.com/in/trunganhvu206" width="100%"></a>
+<a href="https://github.com/trunganhvu206"><img src="assets/contact-github.svg" alt="github: github.com/trunganhvu206" width="100%"></a>
+<a href="https://trunganhvu206.github.io/trunganhvu206/"><img src="assets/contact-live.svg" alt="live: trunganhvu206.github.io/trunganhvu206" width="100%"></a>
 
-
-<br>
+<br><br>
 
 <img src="assets/section-about.svg" alt="01 — about me" width="100%">
 <img src="assets/about.svg" alt="Data science student learning to work with data end to end: cleaning and wrangling, exploratory analysis, modelling, then turning results into something a non-technical reader can act on. Statistics-first, every notebook runs top to bottom." width="100%">
