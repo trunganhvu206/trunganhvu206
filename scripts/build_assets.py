@@ -65,7 +65,6 @@ PROFILE = {
         ("linkedin",    "LinkedIn",    False),
         ("email",       "Email",       True),
         ("projects",    "Project Log", True),
-        ("notebooks",   "Notebooks",   True),
         ("live",        "Live Profile", True),
     ],
 

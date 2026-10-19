@@ -17,7 +17,6 @@
   <a href="https://trunganhvu206.github.io/trunganhvu206/"><img src="assets/link-live.svg" alt="Live interactive profile" height="40"></a>
   <a href="mailto:trunganhvu2611@gmail.com"><img src="assets/link-email.svg" alt="Email" height="40"></a>
   <a href="./PROJECTS.md"><img src="assets/link-projects.svg" alt="Project log" height="40"></a>
-  <a href="https://github.com/trunganhvu206?tab=repositories"><img src="assets/link-notebooks.svg" alt="Notebooks" height="40"></a>
   <img src="assets/link-linkedin.svg" alt="LinkedIn — coming soon" height="40">
 </p>
 
