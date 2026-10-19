@@ -44,6 +44,10 @@
 
 <br><br>
 
+𑣲𝄞𝄞⋆ ݁♪ .⋆˚✰ ݁˖⭑.ᐟ˖ ݁♬⋆.˚𝄞⋆⭒˚.⋆☆
+
+<br>
+
 <img src="assets/footer.svg" alt="exit — thanks for stopping by" width="100%">
 
 </div>
