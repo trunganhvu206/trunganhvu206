@@ -77,7 +77,7 @@ def document(width, height, body, chars, title, desc=""):
 <desc>{esc(desc)}</desc>''' if desc else ''}
 <defs><style>
 {font_face(chars)}
-text{{font-family:'VT323','Courier New',monospace;font-weight:400;white-space:pre}}
+text{{font-family:'VT323','Courier New',monospace;font-weight:400}}
 .t{{fill:{C['text']}}} .s{{fill:{C['soft']}}} .a{{fill:{C['accent']}}} .p{{fill:{C['panel']}}}
 @keyframes bl{{0%,49%{{opacity:1}}50%,100%{{opacity:.15}}}}
 .bl{{animation:bl 1.2s steps(1) infinite}}
@@ -126,43 +126,3 @@ def stars(seed_id="st"):
     return (f'<pattern id="{seed_id}" width="230" height="190" patternUnits="userSpaceOnUse">'
             f'<g stroke="{C["accent"]}" fill="none" stroke-width="1.1" opacity="0.35">{marks}</g>'
             f'</pattern>')
-
-# ------------------------------------------------- terminal row helpers
-def cols(width, size, pad=0):
-    """How many monospace characters fit across `width`."""
-    return int((width - pad * 2) // (ADV * size))
-
-
-def leader(label, value, n, fill="."):
-    """LABEL..........................VALUE, flush to both edges."""
-    gap = n - len(label) - len(value)
-    return label + fill * max(gap, 2) + value
-
-
-def rule(n, ch="-"):
-    return ch * n
-
-
-def banner(label, n, ch="*"):
-    """******** LABEL ******** — centred, filling the full width."""
-    body = f" {label} "
-    side = max(n - len(body), 2) // 2
-    out = ch * side + body + ch * side
-    return out + ch * (n - len(out)) if len(out) < n else out[:n]
-
-
-def line(x, y, text, size, cls="t"):
-    # xml:space keeps the padding that aligns the value column
-    return (f'<text x="{x}" y="{y}" class="{cls}" font-size="{size}" '
-            f'xml:space="preserve">{esc(text)}</text>')
-
-
-def checker(x, y, squares, box=9):
-    """The alternating block strip along the bottom of the reference panel."""
-    out = []
-    for i in range(squares):
-        if i % 2 == 0:
-            out.append(f'<rect x="{x + i * box}" y="{y}" width="{box}" height="{box}" fill="{C["text"]}"/>')
-        out.append(f'<rect x="{x + i * box}" y="{y + box}" width="{box}" height="{box}" '
-                   f'fill="{C["text"] if i % 2 else "none"}"/>')
-    return "".join(out)
