@@ -49,7 +49,9 @@ def font_face(chars):
     from fontTools import subset
     from fontTools.ttLib import TTFont
 
-    font = TTFont(FONT_PATH)
+    # recalcTimestamp=False: no build-time stamp in `head`, so rebuilding
+    # unchanged copy yields byte-identical files and a clean git diff
+    font = TTFont(FONT_PATH, recalcTimestamp=False)
     opts = subset.Options()
     opts.layout_features = []          # no shaping needed for latin monospace
     opts.hinting = False               # rendered at fixed sizes
@@ -126,3 +128,33 @@ def stars(seed_id="st"):
     return (f'<pattern id="{seed_id}" width="230" height="190" patternUnits="userSpaceOnUse">'
             f'<g stroke="{C["accent"]}" fill="none" stroke-width="1.1" opacity="0.35">{marks}</g>'
             f'</pattern>')
+
+
+# braille cell: (column, row, bit) for each of its 2x4 dots
+_BRAILLE = [(0, 0, 0x01), (0, 1, 0x02), (0, 2, 0x04), (1, 0, 0x08),
+            (1, 1, 0x10), (1, 2, 0x20), (0, 3, 0x40), (1, 3, 0x80)]
+
+
+def braille(path, x, y, pitch, dot, color, opacity=1.0):
+    """Draw braille dot art as real dots.
+
+    Fonts disagree about braille glyphs (VT323 has none), so each cell is
+    unpacked into its 2x4 dot grid and every raised dot becomes a round-capped
+    zero-length stroke in one path. Returns (svg, width, height).
+    """
+    with open(path, encoding="utf-8") as fh:
+        rows = [r for r in fh.read().splitlines() if r]
+    d = []
+    for r, row in enumerate(rows):
+        for c, ch in enumerate(row):
+            v = ord(ch) - 0x2800
+            if not 0 < v <= 0xFF:
+                continue
+            for dx, dy, bit in _BRAILLE:
+                if v & bit:
+                    d.append("M%.1f %.1fh0" % (x + (c * 2 + dx) * pitch, y + (r * 4 + dy) * pitch))
+    cols = max(len(r) for r in rows)
+    svg = (f'<path d="{"".join(d)}" stroke="{color}" stroke-width="{dot}" '
+           f'stroke-linecap="round" opacity="{opacity}"/>')
+    return svg, cols * 2 * pitch, len(rows) * 4 * pitch
+

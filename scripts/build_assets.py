@@ -13,10 +13,11 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import theme as T
-from theme import C, card, chip, document, esc, stars, w, window
+from theme import C, braille, card, chip, document, esc, stars, w, window
 
 ROOT = T.ROOT
 OUT = os.path.join(ROOT, "assets")
+ART = os.path.join(os.path.dirname(os.path.abspath(__file__)), "art")
 W = 900  # full-bleed asset width; GitHub scales it down to the column
 
 
@@ -31,12 +32,14 @@ PROFILE = {
     "learning": "pandas · sql · scikit-learn",
 
     "about": [
-        "Data science student learning to work with data end to end — cleaning and",
-        "wrangling, exploratory analysis, modelling, then turning the results into",
-        "something a non-technical reader can act on.",
+        "Data science student learning to work with data end to end",
+        "— cleaning and wrangling, exploratory analysis, modelling,",
+        "then turning the results into something a non-technical",
+        "reader can act on.",
         "",
-        "Statistics-first: I would rather check an assumption and report uncertainty",
-        "than hand over a single accuracy number. Every notebook runs top to bottom.",
+        "Statistics-first: I would rather check an assumption and",
+        "report uncertainty than hand over a single accuracy",
+        "number. Every notebook runs top to bottom.",
     ],
 
     "stack": [
@@ -148,6 +151,13 @@ def build_about():
             body.append(f'<text x="28" y="{y}" class="t" font-size="22">{esc(line)}</text>')
         y += 30
     body.append(f'<text x="28" y="{y - 2}" class="a" font-size="22">$ <tspan class="bl">_</tspan></text>')
+
+    # dot-art sparkle on the right, vertically centred in the card
+    pitch = 2.2
+    art_w, art_h = 102 * pitch, 100 * pitch
+    art, _, _ = braille(os.path.join(ART, "sparkle.txt"),
+                        W - 40 - art_w, (H - art_h) / 2, pitch, 1.6, C["accent"], 0.85)
+    body.append(art)
     return document(W, H + 6, "\n".join(body), "".join(lines) + "$_",
                     "About", " ".join(l for l in lines if l))
 
