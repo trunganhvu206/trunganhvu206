@@ -27,7 +27,8 @@
 
 <br><br>
 
-<img src="assets/section-projects.svg" alt="02 — work in progress" width="100%">
+<img src="assets/section-projects.svg" alt="02 — project" width="100%">
+<a href="https://trunganhvu206.github.io/trunganhvu206/"><img src="assets/card-portfolio.svg" alt="Portfolio — in progress: an interactive version of this profile with a live clock, tabbed panels, copy-my-email and a starfield backdrop, in plain HTML, CSS and JS" width="100%"></a>
 <a href="./PROJECTS.md"><img src="assets/card-log.svg" alt="Project log — in progress: write-ups land here with question, data, method, results against an honest baseline, and how to rerun" width="49%"></a>
 <a href="./PROJECTS.md"><img src="assets/card-next.svg" alt="Working toward — planned: an end-to-end analysis on public data, a supervised model with a real baseline, a statistics write-up, a small dashboard" width="49%"></a>
 

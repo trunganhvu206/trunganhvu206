@@ -50,6 +50,13 @@ PROFILE = {
         ("tooling",   ["git", "jupyter", "vs code"]),
     ],
 
+    # full-width card above the two below; links to the live page
+    "portfolio": ("portfolio", "in progress", [
+        "An interactive version of this profile: live clock, tabbed panels,",
+        "copy-my-email and a starfield backdrop, in plain HTML, CSS and JS.",
+        "-> trunganhvu206.github.io/trunganhvu206",
+    ]),
+
     "cards": [
         ("project log", "in progress", [
             "Write-ups land here as I finish them —",
@@ -74,7 +81,7 @@ PROFILE = {
     "sections": [
         ("contact",  "00", "contact"),
         ("about",    "01", "about me"),
-        ("projects", "02", "work in progress"),
+        ("projects", "02", "project"),
         ("stack",    "03", "toolkit"),
         ("stats",    "04", "activity"),
     ],
@@ -199,8 +206,7 @@ def build_contact_row(label, value):
 
 
 # ----------------------------------------------------------------- cards
-def build_card(title, badge, lines):
-    cw, H = 440, 186
+def build_card(title, badge, lines, cw=440, H=186):
     body = [card(0.6, 0.6, cw - 1.2, H - 1.2)]
     body.append(f'<rect x="0.6" y="0.6" width="{cw - 1.2}" height="38" rx="4" fill="{C["sub"]}"/>')
     body.append(f'<path d="M0.6 38.6 H{cw - 0.6}" stroke="{C["frame"]}" stroke-width="1.2"/>')
@@ -236,6 +242,7 @@ def main():
         write(f"contact-{label}.svg", build_contact_row(label, value))
     write("about.svg", build_about())
     write("stack.svg", build_stack())
+    write("card-portfolio.svg", build_card(*PROFILE["portfolio"], cw=W, H=160))
     for (title, badge, lines), key in zip(PROFILE["cards"], ["log", "next"]):
         write(f"card-{key}.svg", build_card(title, badge, lines))
     write("footer.svg", build_footer())
