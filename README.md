@@ -1,146 +1,50 @@
+<!--
+  Every image on this page is a generated SVG sharing one theme (scripts/theme.py):
+  cream terminal windows, VT323, the same borders, radii and palette.
+
+  All copy lives in the PROFILE section of scripts/build_assets.py — edit it
+  there and run `python scripts/build_assets.py` to regenerate assets/*.svg.
+  The font is embedded per file (subset), because GitHub serves these as
+  images and an image may not fetch an external font.
+-->
+
 <div align="center">
 
-```
-┌─ trung_anh_vu.exe ─────────────────────────────────── ○ ○ ● ─┐
-│                                                              │
-│ ┌──────────┐   Trung Anh Vu ( Rosie Vu )                     │
-│ │          │   Role   : Data Science Student                 │
-│ │    TA    │   User   : @trunganhvu206                       │
-│ │          │   Status : ● Open to Internships                │
-│ └──────────┘   Update : Oct 2026                             │
-│                                                              │
-│ ──────────────────────────────────────────────────────────── │
-│                                                              │
-│ 1. GitHub     github.com/trunganhvu206                       │
-│ 2. LinkedIn   coming soon                                    │
-│ 3. Email      trunganhvu2611@gmail.com                       │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
-```
+<img src="assets/terminal.svg" alt="Terminal running neofetch: Trung Anh Vu (Rosie Vu), data science student, open to internships — Python, pandas, scikit-learn, SQL" width="100%">
 
-<a href="https://trunganhvu206.github.io/trunganhvu206/"><img src="https://img.shields.io/badge/▶_Open_the_live_profile-8C6E4E?style=for-the-badge&logoColor=FFFBF5" alt="Open the live interactive profile"></a>
+<p>
+  <a href="https://github.com/trunganhvu206"><img src="assets/link-github.svg" alt="GitHub" height="40"></a>
+  <a href="https://trunganhvu206.github.io/trunganhvu206/"><img src="assets/link-live.svg" alt="Live interactive profile" height="40"></a>
+  <a href="mailto:trunganhvu2611@gmail.com"><img src="assets/link-email.svg" alt="Email" height="40"></a>
+  <a href="./PROJECTS.md"><img src="assets/link-projects.svg" alt="Project log" height="40"></a>
+  <a href="https://github.com/trunganhvu206?tab=repositories"><img src="assets/link-notebooks.svg" alt="Notebooks" height="40"></a>
+  <img src="assets/link-linkedin.svg" alt="LinkedIn — coming soon" height="40">
+</p>
 
-<sub>the window above, but clickable — live clock, switchable panels, copy-my-email</sub>
+<br>
+
+<img src="assets/section-about.svg" alt="01 — about" width="100%">
+<img src="assets/about.svg" alt="Data science student learning to work with data end to end: cleaning and wrangling, exploratory analysis, modelling, then turning results into something a non-technical reader can act on. Statistics-first, every notebook runs top to bottom." width="100%">
 
 <br><br>
 
-<a href="mailto:trunganhvu2611@gmail.com"><img src="https://img.shields.io/badge/✉_Contact_Me-EFE6D8?style=for-the-badge&logoColor=8C6E4E" alt="Contact me"></a>
-<a href="./PROJECTS.md"><img src="https://img.shields.io/badge/📁_Project_Log-EFE6D8?style=for-the-badge&logoColor=8C6E4E" alt="Project log"></a>
-<a href="https://github.com/trunganhvu206?tab=repositories"><img src="https://img.shields.io/badge/📓_Notebooks-EFE6D8?style=for-the-badge&logoColor=8C6E4E" alt="Notebooks"></a>
+<img src="assets/section-projects.svg" alt="02 — work in progress" width="100%">
+<a href="./PROJECTS.md"><img src="assets/card-log.svg" alt="Project log — in progress: write-ups land here with question, data, method, results against an honest baseline, and how to rerun" width="49%"></a>
+<a href="./PROJECTS.md"><img src="assets/card-next.svg" alt="Working toward — planned: an end-to-end analysis on public data, a supervised model with a real baseline, a statistics write-up, a small dashboard" width="49%"></a>
 
-</div>
+<br><br>
 
-<br>
+<img src="assets/section-stack.svg" alt="03 — toolkit" width="100%">
+<img src="assets/stack.svg" alt="Toolkit — languages: python, r, sql; data: pandas, numpy, postgresql, excel; ml: scikit-learn, pytorch, statsmodels; viz: matplotlib, seaborn, plotly, power bi; tooling: git, jupyter, vs code" width="100%">
 
-## ▸ About Me
+<br><br>
 
-> Data science student learning to work with data end to end — cleaning and wrangling,
-> exploratory analysis, modelling, then turning the results into something a
-> non-technical reader can act on. Currently building my first portfolio projects
-> and keeping every notebook reproducible.
+<img src="assets/section-stats.svg" alt="04 — activity" width="100%">
+<img src="https://github-readme-stats.vercel.app/api?username=trunganhvu206&show_icons=true&rank_icon=github&hide_border=true&bg_color=FFFBF5&title_color=8C6E4E&text_color=3B2F24&icon_color=8C6E4E" alt="GitHub stats" height="165">
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=trunganhvu206&layout=compact&langs_count=8&hide_border=true&bg_color=FFFBF5&title_color=8C6E4E&text_color=3B2F24" alt="Top languages" height="165">
 
-<details open>
-<summary><b>📊 How I work</b></summary>
+<br><br>
 
-<br>
-
-- Learning the full pipeline: SQL and pandas for data, scikit-learn for models, matplotlib/Power BI for the story
-- Statistics-first — checking assumptions and validating properly matters more to me than a single accuracy number
-- Notebooks that run top to bottom: pinned environments, seeded splits, documented decisions
-
-</details>
-
-<details>
-<summary><b>🎯 What I'm open to</b></summary>
-
-<br>
-
-- Data science, analytics and ML internships
-- Research assistant work and thesis collaborations
-- Remote or on-site
-- Resume available on request
-
-</details>
-
-<details>
-<summary><b>📚 What I'm learning right now</b></summary>
-
-<br>
-
-- Python for data work: pandas, NumPy, and the habits that keep a notebook reproducible
-- SQL: joins, aggregations, window functions
-- Statistics and probability — the foundation everything else sits on
-- Machine learning fundamentals with scikit-learn
-
-</details>
-
-<br>
-
-## ▸ Core Skills
-
-| # | Skills | Area |
-|:--|:-------|-----:|
-| `1` | python, pandas, numpy, r | lang |
-| `2` | scikit-learn, pytorch, statistics | ml |
-| `3` | sql, postgresql, cleaning, etl | data |
-| `4` | matplotlib, seaborn, power bi | viz |
-
-<div align="center">
-<br>
-
-<img src="https://img.shields.io/badge/Python-EFE6D8?style=for-the-badge&logo=python&logoColor=8C6E4E" alt="Python">
-<img src="https://img.shields.io/badge/pandas-EFE6D8?style=for-the-badge&logo=pandas&logoColor=8C6E4E" alt="pandas">
-<img src="https://img.shields.io/badge/NumPy-EFE6D8?style=for-the-badge&logo=numpy&logoColor=8C6E4E" alt="NumPy">
-<img src="https://img.shields.io/badge/scikit--learn-EFE6D8?style=for-the-badge&logo=scikitlearn&logoColor=8C6E4E" alt="scikit-learn">
-<img src="https://img.shields.io/badge/PyTorch-EFE6D8?style=for-the-badge&logo=pytorch&logoColor=8C6E4E" alt="PyTorch">
-<br>
-<img src="https://img.shields.io/badge/SQL-EFE6D8?style=for-the-badge&logo=postgresql&logoColor=8C6E4E" alt="SQL">
-<img src="https://img.shields.io/badge/Jupyter-EFE6D8?style=for-the-badge&logo=jupyter&logoColor=8C6E4E" alt="Jupyter">
-<img src="https://img.shields.io/badge/R-EFE6D8?style=for-the-badge&logo=r&logoColor=8C6E4E" alt="R">
-<img src="https://img.shields.io/badge/Plotly-EFE6D8?style=for-the-badge&logo=plotly&logoColor=8C6E4E" alt="Plotly">
-<img src="https://img.shields.io/badge/Power_BI-EFE6D8?style=for-the-badge&logo=powerbi&logoColor=8C6E4E" alt="Power BI">
-<img src="https://img.shields.io/badge/Git-EFE6D8?style=for-the-badge&logo=git&logoColor=8C6E4E" alt="Git">
-
-</div>
-
-<br>
-
-## ▸ Projects
-
-I'm early in my studies and building my portfolio now. Rather than pad this section, I keep a
-**[project log →](./PROJECTS.md)** — what I'm working toward, what I'm learning, and the write-ups as they land.
-
-When a project appears there, it comes with the question it answers, the data source, the results
-against an honest baseline, and steps to reproduce the run.
-
-<br>
-
-## ▸ GitHub Activity
-
-<div align="center">
-
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=trunganhvu206&show_icons=true&rank_icon=github&hide_border=false&bg_color=FFFBF5&title_color=8C6E4E&text_color=3B2F24&icon_color=8C6E4E&border_color=C8B79E" alt="GitHub stats">
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=trunganhvu206&layout=compact&langs_count=8&hide_border=false&bg_color=FFFBF5&title_color=8C6E4E&text_color=3B2F24&border_color=C8B79E" alt="Top languages">
-
-</div>
-
-<br>
-
-## ▸ Contact
-
-Open to internships and collaborations, and happy to talk through my coursework and where I'm headed.
-
-| | |
-|:--|:--|
-| **Email** | [trunganhvu2611@gmail.com](mailto:trunganhvu2611@gmail.com) |
-| **LinkedIn** | coming soon |
-| **Live profile** | [trunganhvu206.github.io/trunganhvu206](https://trunganhvu206.github.io/trunganhvu206/) |
-| **Projects** | [project log](./PROJECTS.md) |
-| **Resume** | available on request |
-
-<div align="center">
-<br>
-
-<sub><code>#F5EFE6</code> · <code>#FFFBF5</code> · <code>#8C6E4E</code> · <code>#C8B79E</code> · <code>#3B2F24</code> · <code>#6B5A48</code></sub>
+<img src="assets/footer.svg" alt="exit — thanks for stopping by" width="100%">
 
 </div>
