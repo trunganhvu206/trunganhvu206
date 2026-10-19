@@ -1,6 +1,6 @@
 <!--
   Every image on this page is a generated SVG sharing one theme (scripts/theme.py):
-  cream terminal windows, VT323, the same borders, radii and palette.
+  black terminal windows, VT323, the same borders, radii and palette.
 
   All copy lives in the PROFILE section of scripts/build_assets.py — edit it
   there and run `python scripts/build_assets.py` to regenerate assets/*.svg.
@@ -40,8 +40,8 @@
 <br><br>
 
 <img src="assets/section-stats.svg" alt="04 — activity" width="100%">
-<img src="https://github-readme-stats.vercel.app/api?username=trunganhvu206&show_icons=true&rank_icon=github&hide_border=true&bg_color=FFFBF5&title_color=8C6E4E&text_color=3B2F24&icon_color=8C6E4E" alt="GitHub stats" height="165">
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=trunganhvu206&layout=compact&langs_count=8&hide_border=true&bg_color=FFFBF5&title_color=8C6E4E&text_color=3B2F24" alt="Top languages" height="165">
+<img src="https://github-readme-stats.vercel.app/api?username=trunganhvu206&show_icons=true&rank_icon=github&hide_border=true&bg_color=171717&title_color=E6E6E6&text_color=EDEDED&icon_color=9A9A9A" alt="GitHub stats" height="165">
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=trunganhvu206&layout=compact&langs_count=8&hide_border=true&bg_color=171717&title_color=E6E6E6&text_color=EDEDED" alt="Top languages" height="165">
 
 <br><br>
 

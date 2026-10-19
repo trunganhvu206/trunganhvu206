@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
-<!-- stars: tiling backdrop layer, palette accent #8C6E4E -->
-    <g stroke="#8C6E4E" fill="none" stroke-width="1.1" stroke-linejoin="round" opacity="0.6">
+<!-- stars: tiling backdrop layer, palette accent #C4C4C4 -->
+    <g stroke="#C4C4C4" fill="none" stroke-width="1.1" stroke-linejoin="round" opacity="0.6">
       <g transform="translate(20,30)"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
       <g transform="translate(95,18) scale(0.7) rotate(18)"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
       <g transform="translate(150,55) scale(1.2) rotate(-12)" class="tw"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
@@ -11,7 +11,7 @@
       <g transform="translate(86,158) scale(0.75) rotate(-8)"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
       <g transform="translate(112,68) scale(0.5) rotate(30)" class="tw" style="animation-delay:2.6s"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
     </g>
-    <g fill="#8C6E4E" opacity="0.5">
+    <g fill="#C4C4C4" opacity="0.5">
       <path d="M45 52.8 L47.2 55 L45 57.2 L42.8 55 Z"/>
       <path d="M140 22.8 L142.2 25 L140 27.2 L137.8 25 Z"/>
       <path d="M70 117.8 L72.2 120 L70 122.2 L67.8 120 Z"/>

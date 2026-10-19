@@ -15,14 +15,14 @@ FONT_PATH = os.path.join(ROOT, "assets", "fonts", "VT323-Regular.ttf")
 
 # ---------------------------------------------------------------- palette
 C = {
-    "bg":       "#F5EFE6",  # page / recessed areas
-    "panel":    "#FFFBF5",  # card surfaces
-    "sub":      "#EFE6D8",  # header strips
-    "backdrop": "#E3C9AC",  # the sand behind everything
-    "accent":   "#8C6E4E",  # buttons, numbers, the name
-    "frame":    "#C8B79E",  # every border
-    "text":     "#3B2F24",  # primary ink
-    "soft":     "#6B5A48",  # secondary ink
+    "bg":       "#101010",  # page / recessed areas
+    "panel":    "#171717",  # card surfaces
+    "sub":      "#1F1F1F",  # header strips
+    "backdrop": "#0A0A0A",  # the black behind everything
+    "accent":   "#E6E6E6",  # buttons, numbers, the name
+    "frame":    "#3A3A3A",  # every border
+    "text":     "#EDEDED",  # primary ink
+    "soft":     "#9A9A9A",  # secondary ink
 }
 
 RADIUS = 4

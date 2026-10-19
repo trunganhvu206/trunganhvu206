@@ -6,8 +6,8 @@
 
 <br>
 
-<a href="./README.md"><img src="https://img.shields.io/badge/←_Back_to_profile-EFE6D8?style=for-the-badge&logoColor=8C6E4E" alt="Back to profile"></a>
-<a href="mailto:trunganhvu2611@gmail.com"><img src="https://img.shields.io/badge/Contact_Me-8C6E4E?style=for-the-badge&logo=gmail&logoColor=FFFBF5" alt="Contact me"></a>
+<a href="./README.md"><img src="https://img.shields.io/badge/←_Back_to_profile-1F1F1F?style=for-the-badge&logoColor=E6E6E6" alt="Back to profile"></a>
+<a href="mailto:trunganhvu2611@gmail.com"><img src="https://img.shields.io/badge/Contact_Me-E6E6E6?style=for-the-badge&logo=gmail&logoColor=101010" alt="Contact me"></a>
 
 </div>
 
@@ -68,12 +68,12 @@ Projects I'm preparing as I move through my coursework:
 
 I'm looking for internships and research assistant work where I can learn on real data. Happy to talk through my coursework, what I'm studying, and where I'm headed.
 
-<a href="mailto:trunganhvu2611@gmail.com"><img src="https://img.shields.io/badge/trunganhvu2611@gmail.com-8C6E4E?style=for-the-badge&logo=gmail&logoColor=FFFBF5" alt="Email"></a>
-<a href="https://github.com/trunganhvu206"><img src="https://img.shields.io/badge/GitHub-EFE6D8?style=for-the-badge&logo=github&logoColor=8C6E4E" alt="GitHub"></a>
+<a href="mailto:trunganhvu2611@gmail.com"><img src="https://img.shields.io/badge/trunganhvu2611@gmail.com-E6E6E6?style=for-the-badge&logo=gmail&logoColor=101010" alt="Email"></a>
+<a href="https://github.com/trunganhvu206"><img src="https://img.shields.io/badge/GitHub-1F1F1F?style=for-the-badge&logo=github&logoColor=E6E6E6" alt="GitHub"></a>
 
 <br><br>
 
-<sub><code>#F5EFE6</code> · <code>#FFFBF5</code> · <code>#8C6E4E</code> · <code>#C8B79E</code> · <code>#3B2F24</code> · <code>#6B5A48</code></sub>
+<sub><code>#0A0A0A</code> · <code>#171717</code> · <code>#3A3A3A</code> · <code>#9A9A9A</code> · <code>#E6E6E6</code> · <code>#EDEDED</code></sub>
 
 </div>
 
