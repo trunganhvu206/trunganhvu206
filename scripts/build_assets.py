@@ -65,7 +65,7 @@ PROFILE = {
 
     "links": [
         ("github",      "GitHub",      True),
-        ("linkedin",    "LinkedIn",    False),
+        ("linkedin",    "LinkedIn",    True),
         ("email",       "Email",       True),
         ("projects",    "Project Log", True),
         ("live",        "Live Profile", True),
