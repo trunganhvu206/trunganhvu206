@@ -87,17 +87,16 @@ def write(name, svg):
 
 # -------------------------------------------------------------- terminal
 def build_terminal():
-    H, bar = 324, 42
+    H, bar = 294, 42
     p = PROFILE
     rows = [
-        ("Name",     p["name"]),
         ("Role",     p["role"]),
         ("Status",   p["status"]),
         ("Focus",    p["focus"]),
         ("Learning", p["learning"]),
         ("Email",    p["email"]),
     ]
-    head = f'{p["handle"]}@github'
+    head, alias = "Trung Anh Vu", "( Rosie Vu )"
 
     body = [f'<defs>{stars()}</defs>', window(W, H, "trung_anh_vu — neofetch", bar)]
     body.append(f'<rect x="1.2" y="{bar + 1}" width="{W - 2.4}" height="{H - bar - 2}" fill="url(#st)"/>')
@@ -110,8 +109,9 @@ def build_terminal():
 
     # key/value block
     tx, ty = 224, bar + 56
-    body.append(f'<text x="{tx}" y="{ty}" class="a" font-size="24">{esc(head)}</text>')
-    body.append(f'<path d="M{tx} {ty + 10} H{tx + w(head, 24)}" stroke="{C["accent"]}" stroke-width="1.2"/>')
+    body.append(f'<text x="{tx}" y="{ty}" class="a" font-size="32">{esc(head)} '
+                f'<tspan class="s" font-size="22">{esc(alias)}</tspan></text>')
+    body.append(f'<path d="M{tx} {ty + 10} H{tx + w(head, 32)}" stroke="{C["accent"]}" stroke-width="1.2"/>')
 
     y = ty + 42
     for key, value in rows:
@@ -119,7 +119,7 @@ def build_terminal():
                     f'<tspan class="s">{esc(value)}</tspan></text>')
         y += 30
 
-    chars = "".join(v for _, v in rows) + "".join(k for k, _ in rows) + head + "TA" + "trung_anh_vu — neofetch:"
+    chars = "".join(v for _, v in rows) + "".join(k for k, _ in rows) + head + alias + "TA" + "trung_anh_vu — neofetch:"
     return document(W, H, "\n".join(body), chars,
                     f'Terminal card: {p["name"]}, {p["role"]}, {p["status"]}',
                     f'{p["role"]}. Focus: {p["focus"]}. Learning: {p["learning"]}. Contact: {p["email"]}.')
