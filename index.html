@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trung Anh Vu ( Rosie Vu ) — Data Science Student</title>
+<meta name="description" content="Trung Anh Vu (Rosie Vu) — data science student, open to internships. Python, pandas, scikit-learn, SQL.">
+<link rel="icon" href="assets/stars.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5EFE6;
+    --backdrop:#E3C9AC;
+    --panel:#FFFBF5;
+    --sub:#EFE6D8;
+    --accent:#8C6E4E;
+    --frame:#C8B79E;
+    --text:#3B2F24;
+    --text-soft:#6B5A48;
+    --title:#8C6E4E;
+    --radius:4px;
+    --shadow:0 5px 18px rgba(107,79,51,.26);
+  }
+
+  *{box-sizing:border-box}
+  svg,img{max-width:100%}
+
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    padding:48px 16px 64px;
+    background-color:var(--backdrop);
+    background-image:
+      radial-gradient(760px 420px at 18% 12%, rgba(255,250,243,.55), transparent 60%),
+      radial-gradient(620px 520px at 82% 70%, rgba(255,250,243,.45), transparent 62%),
+      radial-gradient(520px 380px at 45% 95%, rgba(168,131,90,.18), transparent 65%),
+      url("assets/stars.svg"),
+      url("assets/moons.svg");
+    background-size:auto,auto,auto,180px 180px,330px 310px;
+    background-repeat:no-repeat,no-repeat,no-repeat,repeat,repeat;
+    background-attachment:fixed,fixed,fixed,scroll,scroll;
+    font-family:'VT323','Courier New',monospace;
+    font-size:20px;
+    line-height:1.45;
+    color:var(--text);
+  }
+
+  .window{
+    max-width:min(880px,100%);
+    margin:0 auto;
+    filter:drop-shadow(0 5px 14px rgba(107,79,51,.22));
+  }
+
+  /* ---------- title bar ---------- */
+  .titlebar{
+    display:flex;
+    align-items:stretch;
+    gap:0;
+    background:#E9DECB;
+    border:1px solid var(--frame);
+    border-bottom:none;
+    border-radius:var(--radius) var(--radius) 0 0;
+    padding:6px 6px 0;
+  }
+  .tabstrip{display:flex;gap:4px;flex:1;min-width:0;overflow:hidden}
+  .wtab{
+    display:flex;align-items:center;gap:8px;
+    padding:8px 16px;
+    background:var(--bg);
+    border:1px solid var(--frame);
+    border-bottom:none;
+    border-radius:var(--radius) var(--radius) 0 0;
+    color:var(--text);
+    font:inherit;font-size:19px;
+    white-space:nowrap;
+    cursor:default;
+  }
+  .wtab.active{background:var(--panel)}
+  .wtab svg{flex:none}
+  .dots{display:flex;align-items:center;gap:9px;padding:0 10px 8px;align-self:flex-end}
+  .dot{
+    width:14px;height:14px;border-radius:50%;
+    border:1px solid var(--frame);
+    background:var(--panel);
+    padding:0;cursor:pointer;
+  }
+  .dot:nth-child(2){background:var(--frame)}
+  .dot:nth-child(3){background:var(--accent);border-color:var(--accent)}
+  .dot:hover{transform:scale(1.18)}
+  .dot:focus-visible,.chip:focus-visible,.btn:focus-visible,.linkrow:focus-visible,.tab:focus-visible,.copy:focus-visible{
+    outline:2px solid var(--accent);outline-offset:2px;
+  }
+
+  /* ---------- window body ---------- */
+  .body{
+    background:var(--panel);
+    border:1px solid var(--frame);
+    border-radius:0 0 var(--radius) var(--radius);
+    padding:22px;
+    box-shadow:var(--shadow);
+  }
+  body.collapsed .body{display:none}
+
+  .head{display:grid;grid-template-columns:170px minmax(0,1fr) 232px;gap:18px;align-items:start}
+  .head>*,.cols>*{min-width:0}
+
+  .avatar{
+    aspect-ratio:170/156;
+    background:var(--bg);
+    border:1px solid var(--frame);
+    border-radius:3px;
+    display:grid;place-items:center;
+    position:relative;overflow:hidden;
+  }
+  .avatar span{font-size:52px;color:var(--title);letter-spacing:2px;line-height:1}
+  .avatar::after{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(to bottom,rgba(140,110,78,.07) 0 1px,transparent 1px 4px);
+    pointer-events:none;
+  }
+  .avatar i{position:absolute;inset:18px;border:1px solid var(--frame);border-radius:3px}
+
+  .name{margin:0;font-size:34px;font-weight:400;color:var(--title);line-height:1.1}
+  .name small{font-size:22px;color:var(--text-soft)}
+
+  .fields{margin:12px 0 0;display:grid;gap:2px}
+  .field{display:flex;gap:10px;align-items:baseline;border-bottom:1px dashed var(--frame);padding-bottom:3px}
+  .field dt{color:var(--text);min-width:62px}
+  .field dd{margin:0;color:var(--text-soft)}
+  .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-left:6px;animation:blink 1.2s steps(1) infinite}
+  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:.15}}
+
+  .chiprow{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+  .chip{
+    display:inline-block;padding:3px 12px;
+    background:var(--accent);color:var(--panel);
+    border:1px solid var(--accent);border-radius:2px;
+    text-decoration:none;font-size:18px;
+  }
+  .chip:hover{background:var(--text);border-color:var(--text)}
+  .stamp{color:var(--text-soft);font-size:18px}
+
+  .links h2{margin:0 0 8px;font-size:24px;font-weight:400;color:var(--title)}
+  .linkrow{
+    display:flex;align-items:stretch;gap:0;margin-bottom:6px;
+    background:var(--bg);border:1px solid var(--frame);
+    text-decoration:none;color:var(--text);
+    transition:transform .12s ease,background .12s ease;
+  }
+  .linkrow b{background:var(--accent);color:var(--panel);font-weight:400;padding:4px 9px;flex:none}
+  .linkrow span{padding:4px 9px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:17px}
+  .linkrow:hover{background:var(--sub);transform:translateX(3px)}
+  .linkrow[aria-disabled="true"]{opacity:.6;cursor:not-allowed}
+  .linkrow[aria-disabled="true"]:hover{transform:none;background:var(--bg)}
+
+  /* ---------- buttons ---------- */
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    padding:11px 14px;
+    background:var(--accent);color:var(--panel);
+    border:1px solid var(--accent);border-radius:3px;
+    text-decoration:none;font:inherit;font-size:21px;
+    cursor:pointer;
+    transition:background .12s ease,transform .08s ease;
+  }
+  .btn:hover{background:var(--text);border-color:var(--text)}
+  .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:var(--panel);color:var(--text);border-color:var(--frame)}
+  .btn.ghost:hover{background:var(--sub);color:var(--text)}
+
+  /* ---------- columns ---------- */
+  .cols{display:grid;grid-template-columns:238px minmax(0,1fr);gap:16px;align-items:start}
+
+  .mosaic{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:7px;
+    background:var(--bg);border:1px solid var(--frame);border-radius:3px;padding:8px;
+  }
+  .mosaic div{aspect-ratio:72/42;background:var(--panel);border:1px solid var(--frame);display:grid;place-items:center}
+  .mosaic svg{width:80%;height:70%}
+
+  .smallbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .smallbtns .btn{font-size:19px;padding:9px 8px}
+
+  table{width:100%;border-collapse:collapse;margin-top:10px;background:var(--panel);border:1px solid var(--frame);border-radius:3px;overflow:hidden}
+  caption{
+    background:var(--frame);color:var(--text);
+    text-align:left;padding:7px 10px;font-size:19px;
+  }
+  caption small{display:block;color:var(--text-soft);font-size:17px}
+  td{padding:6px 10px;font-size:18px;vertical-align:top;border-top:1px solid var(--sub)}
+  td.n{color:var(--text-soft);width:28px}
+  td.area{color:var(--text-soft);text-align:right;white-space:nowrap}
+
+  /* ---------- tabbed panels ---------- */
+  .tabs{display:flex;gap:6px;flex-wrap:wrap}
+  .tab{
+    padding:7px 16px;font:inherit;font-size:20px;
+    background:var(--sub);color:var(--text-soft);
+    border:1px solid var(--frame);border-bottom:none;
+    border-radius:3px 3px 0 0;cursor:pointer;
+  }
+  .tab[aria-selected="true"]{background:var(--frame);color:var(--text)}
+  .tab:hover{background:var(--frame)}
+  .pane{
+    background:var(--panel);border:1px solid var(--frame);border-radius:0 3px 3px 3px;
+    padding:14px 16px;min-height:188px;
+  }
+  .pane p{margin:0 0 10px}
+  .pane p:last-child{margin-bottom:0}
+  .pane ul{margin:0;padding-left:22px}
+  .pane li{margin-bottom:4px}
+  .caret{animation:blink 1.2s steps(1) infinite;color:var(--accent)}
+  .taglist{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .taglist span{border:1px solid var(--frame);background:var(--bg);padding:1px 9px;border-radius:2px;font-size:18px}
+
+  /* ---------- footer ---------- */
+  .foot{max-width:880px;margin:16px auto 0;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .hire{background:var(--accent);color:var(--panel);padding:9px 20px;border-radius:5px;font-size:20px}
+  .foot a{color:var(--text-soft);font-size:18px}
+  .foot>span:last-child{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
+  .foot a{overflow-wrap:anywhere}
+  .copy{
+    font:inherit;font-size:17px;background:none;border:1px solid var(--frame);
+    color:var(--text-soft);border-radius:2px;padding:0 8px;cursor:pointer;
+  }
+  .copy:hover{background:var(--sub);color:var(--text)}
+
+  @media (max-width:760px){
+    body{padding:20px 16px 48px;font-size:19px}
+    .head{grid-template-columns:1fr;gap:14px}
+    .avatar{max-width:170px}
+    .actions,.cols,.smallbtns{grid-template-columns:1fr}
+    .wtab:nth-child(2){display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<main class="window">
+  <div class="titlebar">
+    <div class="tabstrip">
+      <div class="wtab">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="#8C6E4E" stroke-width="1.3" aria-hidden="true">
+          <rect x="0.7" y="2" width="13.6" height="12.3" rx="2"/><path d="M0.7 5.6H14.3M4 .7v2.6M11 .7v2.6"/>
+        </svg>
+        <span>trung_anh_vu.exe</span>
+      </div>
+      <div class="wtab active">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#8C6E4E" stroke-width="1.3" aria-hidden="true">
+          <circle cx="8" cy="8" r="7"/><path d="M8 4v4l3 2" stroke-linecap="round"/>
+        </svg>
+        <span id="clock">--:--</span>
+      </div>
+    </div>
+    <div class="dots">
+      <button class="dot" id="dot1" title="nothing happens" aria-label="decorative"></button>
+      <button class="dot" title="nothing happens" aria-label="decorative"></button>
+      <button class="dot" id="collapse" title="minimise the window" aria-label="Minimise window"></button>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="head">
+      <div class="avatar"><i></i><span>TA</span></div>
+
+      <div>
+        <h1 class="name">Trung Anh Vu <small>( Rosie Vu )</small></h1>
+        <dl class="fields">
+          <div class="field"><dt>Role</dt><dd>Data Science Student</dd></div>
+          <div class="field"><dt>User</dt><dd>@trunganhvu206</dd></div>
+          <div class="field"><dt>Status</dt><dd>Open to Internships<span class="live"></span></dd></div>
+        </dl>
+        <div class="chiprow">
+          <a class="chip" href="https://github.com/trunganhvu206">GitHub</a>
+          <span class="stamp">Last Update: <span id="stamp">Oct 2026</span></span>
+        </div>
+      </div>
+
+      <nav class="links" aria-label="Links">
+        <h2>links . . .</h2>
+        <a class="linkrow" href="https://github.com/trunganhvu206"><b>1</b><span>GitHub</span></a>
+        <a class="linkrow" href="#" aria-disabled="true" title="link coming soon"><b>2</b><span>LinkedIn — soon</span></a>
+        <a class="linkrow" href="mailto:trunganhvu2611@gmail.com"><b>3</b><span>trunganhvu2611@gmail.com</span></a>
+      </nav>
+    </div>
+
+    <div class="actions">
+      <a class="btn" href="mailto:trunganhvu2611@gmail.com">
+        <svg width="20" height="15" viewBox="0 0 20 15" fill="none" aria-hidden="true">
+          <rect x=".5" y=".5" width="19" height="14" rx="2" fill="currentColor"/><path d="M1.5 3 10 10l8.5-7" stroke="#8C6E4E" stroke-width="1.6"/>
+        </svg>
+        Contact Me
+      </a>
+      <a class="btn" href="PROJECTS.md">
+        <svg width="20" height="17" viewBox="0 0 20 17" fill="currentColor" aria-hidden="true">
+          <path d="M0 3a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2z"/>
+        </svg>
+        Project Log
+      </a>
+    </div>
+
+    <div class="cols">
+      <div>
+        <div class="mosaic" aria-hidden="true">
+          <div><svg viewBox="0 0 72 42" stroke="#8C6E4E" stroke-width="2" opacity=".55"><path d="M6 12h40M6 20h58M6 28h30M6 34h50"/></svg></div>
+          <div><svg viewBox="0 0 72 42"><rect x="24" y="8" width="24" height="26" fill="#8C6E4E" opacity=".4"/><path d="M4 18h64" stroke="#8C6E4E" stroke-width="1.5" opacity=".55"/></svg></div>
+          <div><svg viewBox="0 0 72 42" fill="none" stroke="#8C6E4E" opacity=".65"><circle cx="36" cy="21" r="12" stroke-width="2"/><path d="M36 9v24" stroke-width="1.2"/></svg></div>
+          <div><svg viewBox="0 0 72 42"><path d="M8 34l14-20 12 14 10-8 20 14z" fill="#8C6E4E" opacity=".45"/></svg></div>
+          <div><svg viewBox="0 0 72 42" stroke="#C8B79E" stroke-width="1.6"><path d="M6 10h60M6 16h44M6 22h60M6 28h26M6 34h52"/></svg></div>
+          <div><svg viewBox="0 0 72 42" fill="none" stroke="#8C6E4E" opacity=".6"><rect x="10" y="10" width="52" height="22" stroke-width="1.6"/><path d="M10 21h52" stroke-width="1"/></svg></div>
+          <div><svg viewBox="0 0 72 42"><path d="M12 32V14M24 32V8M36 32V20M48 32V12M60 32v-8" stroke="#8C6E4E" stroke-width="3" opacity=".5"/></svg></div>
+          <div><svg viewBox="0 0 72 42"><g fill="#8C6E4E"><circle cx="14" cy="30" r="2.4"/><circle cx="26" cy="22" r="2.4"/><circle cx="38" cy="25" r="2.4"/><circle cx="50" cy="14" r="2.4"/><circle cx="60" cy="10" r="2.4"/></g><path d="M6 34L66 8" stroke="#C8B79E" stroke-width="1.2"/></svg></div>
+          <div><svg viewBox="0 0 72 42"><circle cx="36" cy="21" r="8" fill="#8C6E4E" opacity=".45"/><path d="M4 21h18M50 21h18" stroke="#8C6E4E" stroke-width="1.4" opacity=".55"/></svg></div>
+        </div>
+
+        <div class="smallbtns">
+          <a class="btn ghost" href="#" title="not uploaded yet" aria-disabled="true">Resume</a>
+          <a class="btn ghost" href="https://github.com/trunganhvu206?tab=repositories">Notebooks</a>
+        </div>
+
+        <table>
+          <caption>Core Skills <small>by discipline</small></caption>
+          <tbody>
+            <tr><td class="n">1.</td><td>python, pandas, numpy, r</td><td class="area">lang</td></tr>
+            <tr><td class="n">2.</td><td>scikit-learn, pytorch, statistics</td><td class="area">ml</td></tr>
+            <tr><td class="n">3.</td><td>sql, postgresql, cleaning, etl</td><td class="area">data</td></tr>
+            <tr><td class="n">4.</td><td>matplotlib, power bi</td><td class="area">viz</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="tabs" role="tablist" aria-label="Profile sections">
+          <button class="tab" role="tab" id="t-about" aria-controls="p-about" aria-selected="true">About Me</button>
+          <button class="tab" role="tab" id="t-tool" aria-controls="p-tool" aria-selected="false" tabindex="-1">Toolkit</button>
+          <button class="tab" role="tab" id="t-open" aria-controls="p-open" aria-selected="false" tabindex="-1">Open To</button>
+        </div>
+
+        <div class="pane" role="tabpanel" id="p-about" aria-labelledby="t-about" tabindex="0">
+          <p>data science student learning to work with data end to end — cleaning and wrangling, exploratory analysis, modelling, then turning the results into something a non-technical reader can act on.</p>
+          <p>currently building my first portfolio projects and keeping every notebook reproducible<span class="caret">_</span></p>
+        </div>
+
+        <div class="pane" role="tabpanel" id="p-tool" aria-labelledby="t-tool" tabindex="0" hidden>
+          <p>what i'm learning and using:</p>
+          <div class="taglist">
+            <span>python</span><span>pandas</span><span>numpy</span><span>scikit-learn</span><span>pytorch</span>
+            <span>sql</span><span>postgresql</span><span>jupyter</span><span>r</span><span>statsmodels</span>
+            <span>excel</span><span>matplotlib</span><span>seaborn</span><span>plotly</span><span>power bi</span><span>git</span>
+          </div>
+        </div>
+
+        <div class="pane" role="tabpanel" id="p-open" aria-labelledby="t-open" tabindex="0" hidden>
+          <ul>
+            <li>data science, analytics and ml internships</li>
+            <li>research assistant work and thesis collaborations</li>
+            <li>remote or on-site</li>
+            <li>resume available on request</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="foot">
+  <span class="hire">available for hire</span>
+  <span>
+    <a href="https://github.com/trunganhvu206">github.com/trunganhvu206</a>
+    <button class="copy" id="copy" type="button">copy email</button>
+  </span>
+</div>
+
+<script>
+  // live clock in the title bar
+  var clock = document.getElementById('clock');
+  function tick(){
+    var d = new Date(), h = d.getHours(), m = String(d.getMinutes()).padStart(2,'0');
+    var ap = h < 12 ? 'AM' : 'PM'; h = h % 12 || 12;
+    clock.textContent = h + ':' + m + ' ' + ap;
+  }
+  tick(); setInterval(tick, 10000);
+
+  // "last update" reflects the page, not a hardcoded month
+  var stamp = document.getElementById('stamp');
+  if (document.lastModified) {
+    var dm = new Date(document.lastModified);
+    if (!isNaN(dm)) stamp.textContent = dm.toLocaleString('en', {month:'short', year:'numeric'});
+  }
+
+  // tabs: click plus arrow-key navigation
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(tab){
+    tabs.forEach(function(t){
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function(tab, i){
+    tab.addEventListener('click', function(){ select(tab); });
+    tab.addEventListener('keydown', function(e){
+      var next = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : -1;
+      if (next < 0) return;
+      e.preventDefault();
+      var t = tabs[(next + tabs.length) % tabs.length];
+      select(t); t.focus();
+    });
+  });
+
+  // minimise the window
+  document.getElementById('collapse').addEventListener('click', function(){
+    document.body.classList.toggle('collapsed');
+    this.title = document.body.classList.contains('collapsed') ? 'restore the window' : 'minimise the window';
+  });
+
+  // copy the email, with feedback
+  var copy = document.getElementById('copy'), EMAIL = 'trunganhvu2611@gmail.com';
+  copy.addEventListener('click', function(){
+    var done = function(){ copy.textContent = 'copied!'; setTimeout(function(){ copy.textContent = 'copy email'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(EMAIL).then(done, function(){ copy.textContent = EMAIL; });
+    } else {
+      copy.textContent = EMAIL;
+    }
+  });
+
+  // links that aren't live yet shouldn't pretend to be
+  document.querySelectorAll('[aria-disabled="true"]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.preventDefault(); });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+<!-- stars: tiling backdrop layer, palette accent #8C6E4E -->
+    <g stroke="#8C6E4E" fill="none" stroke-width="1.1" stroke-linejoin="round" opacity="0.6">
+      <g transform="translate(20,30)"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
+      <g transform="translate(95,18) scale(0.7) rotate(18)"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
+      <g transform="translate(150,55) scale(1.2) rotate(-12)" class="tw"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
+      <g transform="translate(60,82) scale(0.9) rotate(25)"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
+      <g transform="translate(128,118) scale(0.8)"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
+      <g transform="translate(25,140) scale(1.1) rotate(-20)" class="tw" style="animation-delay:1.4s"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
+      <g transform="translate(170,148) scale(0.6) rotate(10)"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
+      <g transform="translate(86,158) scale(0.75) rotate(-8)"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
+      <g transform="translate(112,68) scale(0.5) rotate(30)" class="tw" style="animation-delay:2.6s"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>
+    </g>
+    <g fill="#8C6E4E" opacity="0.5">
+      <path d="M45 52.8 L47.2 55 L45 57.2 L42.8 55 Z"/>
+      <path d="M140 22.8 L142.2 25 L140 27.2 L137.8 25 Z"/>
+      <path d="M70 117.8 L72.2 120 L70 122.2 L67.8 120 Z"/>
+      <path d="M160 92.8 L162.2 95 L160 97.2 L157.8 95 Z"/>
+      <path d="M10 92.8 L12.2 95 L10 97.2 L7.8 95 Z"/>
+      <path d="M100 132.8 L102.2 135 L100 137.2 L97.8 135 Z"/>
+      <path d="M55 167.8 L57.2 170 L55 172.2 L52.8 170 Z"/>
+      <path d="M175 12.8 L177.2 15 L175 17.2 L172.8 15 Z"/>
+    </g>
+  </svg>
