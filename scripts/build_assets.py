@@ -87,7 +87,7 @@ def write(name, svg):
 
 # -------------------------------------------------------------- terminal
 def build_terminal():
-    H, bar = 372, 42
+    H, bar = 324, 42
     p = PROFILE
     rows = [
         ("Name",     p["name"]),
@@ -118,13 +118,6 @@ def build_terminal():
         body.append(f'<text x="{tx}" y="{y}" class="t" font-size="22">{key.ljust(9)}: '
                     f'<tspan class="s">{esc(value)}</tspan></text>')
         y += 30
-
-    # the colour bar neofetch prints at the bottom
-    sx = tx
-    for shade in ["backdrop", "frame", "accent", "soft", "text", "sub", "bg", "panel"]:
-        body.append(f'<rect x="{sx}" y="{y + 2}" width="26" height="18" fill="{C[shade]}" '
-                    f'stroke="{C["frame"]}" stroke-width="0.8"/>')
-        sx += 30
 
     chars = "".join(v for _, v in rows) + "".join(k for k, _ in rows) + head + "TA" + "trung_anh_vu — neofetch:"
     return document(W, H, "\n".join(body), chars,
