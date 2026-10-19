@@ -113,12 +113,69 @@ def render(days):
                     f"Contribution calendar for {USER}, {days[0][0]} to {days[-1][0]}.")
 
 
+def streaks(days):
+    """(current, longest, longest_start, longest_end) in days.
+
+    Today counts toward the current streak only once it has a contribution;
+    an empty today doesn't break a streak that ran through yesterday.
+    """
+    longest, run, start, best = 0, 0, None, (None, None)
+    for date, _, _, _, count in days:
+        if count:
+            run += 1
+            start = start if run > 1 else date
+            if run > longest:
+                longest, best = run, (start, date)
+        else:
+            run = 0
+    current = 0
+    tail = days if days[-1][4] else days[:-1]
+    for _, _, _, _, count in reversed(tail):
+        if not count:
+            break
+        current += 1
+    return current, longest, best[0], best[1]
+
+
+def render_stats(days):
+    """Summary card in the house style, replacing third-party stat images."""
+    total = sum(d[4] for d in days)
+    current, longest, l_start, l_end = streaks(days)
+    peak = max(days, key=lambda d: d[4])
+    active = sum(1 for d in days if d[4])
+
+    def span(a, b):
+        return "—" if not a else (f"{a:%b %d}" if a == b else f"{a:%b %d} – {b:%b %d}")
+
+    cols = [
+        (f"{total:,}",   "contributions",  f"{days[0][0]:%b %Y} – now"),
+        (f"{current}",   "current streak", "days in a row" if current != 1 else "day in a row"),
+        (f"{longest}",   "longest streak", span(l_start, l_end)),
+        (f"{peak[4]}",   "best day",       f"{peak[0]:%b %d}" if peak[4] else "—"),
+        (f"{active}",    "active days",    "in the last year"),
+    ]
+    H, cw = 150, W / len(cols)
+    body = [T.card(0.6, 0.6, W - 1.2, H - 1.2, seed="stats")]
+    for i, (num, label, sub) in enumerate(cols):
+        cx = cw * i + cw / 2
+        if i:
+            body.append(f'<path d="M{cw * i:.1f} 28 V{H - 28}" stroke="{C["frame"]}" stroke-width="1"/>')
+        body.append(f'<text x="{cx:.1f}" y="66" class="a" font-size="46" text-anchor="middle">{esc(num)}</text>')
+        body.append(f'<text x="{cx:.1f}" y="96" class="t" font-size="21" text-anchor="middle">{esc(label)}</text>')
+        body.append(f'<text x="{cx:.1f}" y="120" class="s" font-size="17" text-anchor="middle">{esc(sub)}</text>')
+    chars = "".join(n + l + s for n, l, s in cols)
+    return document(W, H, "\n".join(body), chars, f"{USER}: activity summary",
+                    "; ".join(f"{l}: {n} ({s})" for n, l, s in cols))
+
+
 def main():
-    days = parse(fetch(USER))
-    svg = render(sorted(days))
-    with open(OUT, "w", encoding="utf-8") as fh:
-        fh.write(svg)
-    print(f"wrote {OUT} — {len(days)} days, {sum(d[4] for d in days)} contributions")
+    days = sorted(parse(fetch(USER)))
+    outputs = {OUT: render(days),
+               os.path.join(T.ROOT, "assets", "activity-stats.svg"): render_stats(days)}
+    for path, svg in outputs.items():
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(svg)
+    print(f"wrote {len(outputs)} files — {len(days)} days, {sum(d[4] for d in days)} contributions")
 
 
 if __name__ == "__main__":

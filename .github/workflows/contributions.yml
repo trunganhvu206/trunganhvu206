@@ -1,6 +1,6 @@
 name: contributions
 
-# Redraw assets/contributions.svg from GitHub's public contribution data.
+# Redraw assets/contributions.svg and assets/activity-stats.svg from GitHub's public contribution data.
 on:
   schedule:
     - cron: "17 3 * * *"   # daily, 03:17 UTC
@@ -23,14 +23,14 @@ jobs:
 
       - run: python scripts/contributions.py ${{ github.repository_owner }}
 
-      - name: Commit if the calendar changed
+      - name: Commit if the activity changed
         run: |
-          if git diff --quiet -- assets/contributions.svg; then
+          if git diff --quiet -- assets/contributions.svg assets/activity-stats.svg; then
             echo "no change"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/contributions.svg
-          git commit -m "Refresh contribution calendar"
+          git add assets/contributions.svg assets/activity-stats.svg
+          git commit -m "Refresh activity"
           git push

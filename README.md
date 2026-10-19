@@ -40,8 +40,7 @@
 <br><br>
 
 <img src="assets/section-stats.svg" alt="04 — activity" width="100%">
-<img src="https://github-readme-stats.vercel.app/api?username=trunganhvu206&show_icons=true&rank_icon=github&hide_border=true&disable_animations=true&bg_color=171717&title_color=E6E6E6&text_color=EDEDED&icon_color=9A9A9A" alt="GitHub stats" height="165">
-<img src="https://streak-stats.demolab.com?user=trunganhvu206&hide_border=true&disable_animations=true&background=171717&stroke=3A3A3A&ring=E6E6E6&fire=E6E6E6&currStreakNum=EDEDED&sideNums=EDEDED&currStreakLabel=E6E6E6&sideLabels=9A9A9A&dates=9A9A9A" alt="Total contributions, current and longest streak" height="165">
+<img src="assets/activity-stats.svg" alt="Activity summary: total contributions, current streak, longest streak, best day and active days over the last year" width="100%">
 <img src="assets/contributions.svg" alt="Contribution calendar for the last year" width="100%">
 
 <br><br>
