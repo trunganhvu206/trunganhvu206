@@ -71,13 +71,6 @@ PROFILE = {
         ("live",        "Live Profile", True),
     ],
 
-    "contact": [
-        ("email",    "trunganhvu2611@gmail.com"),
-        ("linkedin", "linkedin.com/in/trunganhvu206"),
-        ("github",   "github.com/trunganhvu206"),
-        ("live",     "trunganhvu206.github.io/trunganhvu206"),
-    ],
-
     "sections": [
         ("contact",  "00", "contact"),
         ("about",    "01", "about me"),
@@ -188,22 +181,6 @@ def build_stack():
                     "; ".join(f'{l}: {", ".join(i)}' for l, i in groups))
 
 
-# --------------------------------------------------------------- contact
-def build_contact():
-    rows = PROFILE["contact"]
-    pad, label_w, row_h = 28, 130, 38
-    H = 30 + len(rows) * row_h
-    body = [card(0.6, 0.6, W - 1.2, H - 1.2)]
-    y = 42
-    for label, value in rows:
-        body.append(f'<text x="{pad}" y="{y}" class="a" font-size="22">{esc(label)}</text>')
-        body.append(f'<text x="{pad + label_w}" y="{y}" class="t" font-size="22">{esc(value)}</text>')
-        y += row_h
-    chars = "".join(l + v for l, v in rows)
-    return document(W, H, "\n".join(body), chars, "Contact",
-                    "; ".join(f"{l}: {v}" for l, v in rows))
-
-
 # ----------------------------------------------------------------- cards
 def build_card(title, badge, lines):
     cw, H = 440, 186
@@ -250,7 +227,6 @@ def main():
     write("terminal.svg", build_terminal())
     for key, num, label in PROFILE["sections"]:
         write(f"section-{key}.svg", build_section(num, label))
-    write("contact.svg", build_contact())
     write("about.svg", build_about())
     write("stack.svg", build_stack())
     for (title, badge, lines), key in zip(PROFILE["cards"], ["log", "next"]):

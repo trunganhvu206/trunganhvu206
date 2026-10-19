@@ -15,7 +15,12 @@
 <br><br>
 
 <img src="assets/section-contact.svg" alt="00 — contact" width="100%">
-<img src="assets/contact.svg" alt="Contact — email: trunganhvu2611@gmail.com; LinkedIn: linkedin.com/in/trunganhvu206; GitHub: github.com/trunganhvu206; live profile: trunganhvu206.github.io/trunganhvu206" width="100%">
+<p>
+  <b>email</b>&nbsp;&nbsp;<a href="mailto:trunganhvu2611@gmail.com">trunganhvu2611@gmail.com</a><br>
+  <b>linkedin</b>&nbsp;&nbsp;<a href="https://www.linkedin.com/in/trunganhvu206">linkedin.com/in/trunganhvu206</a><br>
+  <b>github</b>&nbsp;&nbsp;<a href="https://github.com/trunganhvu206">github.com/trunganhvu206</a><br>
+  <b>live</b>&nbsp;&nbsp;<a href="https://trunganhvu206.github.io/trunganhvu206/">trunganhvu206.github.io/trunganhvu206</a>
+</p>
 
 <p>
   <a href="mailto:trunganhvu2611@gmail.com"><img src="assets/link-email.svg" alt="Email" height="40"></a>
