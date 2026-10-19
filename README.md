@@ -10,7 +10,7 @@
 
 <div align="center">
 
-<img src="assets/terminal.svg" alt="Terminal running neofetch: Trung Anh Vu (Rosie Vu), data science student, open to internships — Python, pandas, scikit-learn, SQL" width="100%">
+<img src="assets/terminal.svg" alt="Terminal window trung_anh_vu: Trung Anh Vu (Rosie Vu), data science student, open to internships — Python, pandas, scikit-learn, SQL" width="100%">
 
 <br><br>
 

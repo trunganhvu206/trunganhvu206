@@ -89,10 +89,20 @@ text{{font-family:'VT323','Courier New',monospace;font-weight:400}}
 """
 
 
-def card(x, y, width, height, fill=None, radius=RADIUS):
-    """A panel with the house border."""
-    return (f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="{radius}" '
-            f'fill="{fill or C["panel"]}" stroke="{C["frame"]}" stroke-width="1.2"/>')
+def card(x, y, width, height, fill=None, radius=RADIUS, starry=True, seed=""):
+    """A panel with the house border, and the hero's sparkle backdrop.
+
+    One card per asset, so the pattern id can't collide within a file.
+    `seed` shifts the tile so same-sized cards don't repeat identical stars;
+    derived from the text itself (not hash(), which varies per run).
+    """
+    panel = (f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="{radius}" '
+             f'fill="{fill or C["panel"]}" stroke="{C["frame"]}" stroke-width="1.2"/>')
+    if not starry:
+        return panel
+    n = sum(map(ord, seed))
+    return (f'<defs>{stars(dx=n * 37 % 230, dy=n * 53 % 190)}</defs>{panel}'
+            f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="{radius}" fill="url(#st)"/>')
 
 
 def window(width, height, title, titlebar=42):
@@ -117,7 +127,7 @@ def chip(x, y, label, size=20, pad=11, height=30):
     return svg, width
 
 
-def stars(seed_id="st"):
+def stars(seed_id="st", dx=0, dy=0):
     """The sparkle tile, for assets that want the backdrop showing through."""
     pts = [(28, 34, 1.0), (118, 20, 0.6), (196, 58, 0.85), (74, 86, 0.7),
            (164, 124, 0.75), (30, 142, 0.9), (210, 150, 0.55), (108, 160, 0.65)]
@@ -125,7 +135,8 @@ def stars(seed_id="st"):
         f'<g transform="translate({x},{y}) scale({s})"><path d="M0 -6 C0.8 -1.6 1.6 -0.8 6 0 '
         f'C1.6 0.8 0.8 1.6 0 6 C-0.8 1.6 -1.6 0.8 -6 0 C-1.6 -0.8 -0.8 -1.6 0 -6 Z"/></g>'
         for x, y, s in pts)
-    return (f'<pattern id="{seed_id}" width="230" height="190" patternUnits="userSpaceOnUse">'
+    return (f'<pattern id="{seed_id}" width="230" height="190" patternUnits="userSpaceOnUse" '
+            f'patternTransform="translate({dx} {dy})">'
             f'<g stroke="{C["accent"]}" fill="none" stroke-width="1.1" opacity="0.35">{marks}</g>'
             f'</pattern>')
 

@@ -19,7 +19,7 @@ import urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import theme as T
-from theme import C, document, esc
+from theme import C, document, esc, stars
 
 USER = sys.argv[1] if len(sys.argv) > 1 else "trunganhvu206"
 OUT = os.path.join(T.ROOT, "assets", "contributions.svg")
@@ -66,7 +66,9 @@ def render(days):
     H = TOP + 7 * PITCH + 52
 
     body = [f'<rect x="0.6" y="0.6" width="{W - 1.2}" height="{H - 1.2}" rx="{T.RADIUS}" '
-            f'fill="{C["panel"]}" stroke="{C["frame"]}" stroke-width="1.2"/>']
+            f'fill="{C["panel"]}" stroke="{C["frame"]}" stroke-width="1.2"/>',
+            f'<defs>{stars()}</defs><rect x="0.6" y="0.6" width="{W - 1.2}" height="{H - 1.2}" '
+            f'rx="{T.RADIUS}" fill="url(#st)"/>']
 
     title = f"{total:,} contributions in the last year"
     body.append(f'<text x="{LEFT}" y="36" class="t" font-size="24">{esc(title)}</text>')

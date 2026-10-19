@@ -114,7 +114,7 @@ def build_terminal():
     first = rule_y + 36
     H = first + (len(rows) - 1) * 30 + 32
 
-    body = [f'<defs>{stars()}</defs>', window(W, H, "trung_anh_vu — neofetch", bar)]
+    body = [f'<defs>{stars()}</defs>', window(W, H, "trung_anh_vu", bar)]
     body.append(f'<rect x="1.2" y="{bar + 1}" width="{W - 2.4}" height="{H - bar - 2}" fill="url(#st)"/>')
     body.append(name)
     body.append(f'<text x="{tx + name_w + 22}" y="{bar + 32 + base * pitch}" class="s" '
@@ -127,7 +127,7 @@ def build_terminal():
                     f'<tspan class="s">{esc(value)}</tspan></text>')
         y += 30
 
-    chars = "".join(v for _, v in rows) + "".join(k for k, _ in rows) + alias + "trung_anh_vu — neofetch:"
+    chars = "".join(v for _, v in rows) + "".join(k for k, _ in rows) + alias + "trung_anh_vu:"
     return document(W, H, "\n".join(body), chars,
                     f'{head} {alias} — {p["role"]}, {p["status"]}',
                     f'{p["role"]}. Focus: {p["focus"]}. Learning: {p["learning"]}. Contact: {p["email"]}.')
@@ -197,7 +197,7 @@ def build_contact_row(label, value):
     """
     H, size = 54, 22
     y = H / 2 + 7
-    body = [card(0.6, 0.6, W - 1.2, H - 1.2),
+    body = [card(0.6, 0.6, W - 1.2, H - 1.2, seed=label),
             f'<text x="28" y="{y}" class="a" font-size="{size}">$ {esc(label)}</text>',
             f'<text x="170" y="{y}" class="t" font-size="{size}">{esc(value)}</text>',
             f'<text x="{W - 28}" y="{y}" class="s" font-size="{size}" text-anchor="end">-&gt;</text>']
@@ -207,7 +207,7 @@ def build_contact_row(label, value):
 
 # ----------------------------------------------------------------- cards
 def build_card(title, badge, lines, cw=440, H=186):
-    body = [card(0.6, 0.6, cw - 1.2, H - 1.2)]
+    body = [card(0.6, 0.6, cw - 1.2, H - 1.2, seed=title)]
     body.append(f'<rect x="0.6" y="0.6" width="{cw - 1.2}" height="38" rx="4" fill="{C["sub"]}"/>')
     body.append(f'<path d="M0.6 38.6 H{cw - 0.6}" stroke="{C["frame"]}" stroke-width="1.2"/>')
     body.append(f'<text x="20" y="27" class="t" font-size="23">{esc(title)}</text>')
